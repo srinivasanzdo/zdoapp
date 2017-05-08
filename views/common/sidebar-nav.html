@@ -1,0 +1,43 @@
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="icon-speedometer"></i> Dashboard</a>
+            </li>
+           <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.customer')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.customer')}" href="#"><i class="icon-user"></i> Customer</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.addcustomer"><i class="icon-user-follow"></i> Add Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.editcustomer"><i class="icon-user-following"></i> Edit Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer"><i class="icon-people"></i> View Customer</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.physiocenter')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.physiocenter')}" href="#"><i class="fa fa-institution"></i> Physio Center</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.addphysiocenter"><i class="fa fa-plus"></i> Add Physio Center</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.editphysiocenter"><i class="fa fa-edit"></i> Edit Physio Center</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.viewphysiocenter"><i class="fa fa-eye"></i> View Physio Center</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ui-sref-active="active" ui-sref="app.physioassign"><i class="fa fa-random"></i>Physio Assign</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"><i class="icon-power"></i>Logout</a>
+            </li>
+        </ul>
+    </nav>
+</div>
