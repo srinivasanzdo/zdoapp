@@ -10,12 +10,12 @@ function loginCtrl($scope, $state, HTTPService) {
     $scope.login = function () {
         
         //alert(HTTPService.login());
-        //$state.go('app.main');
+        $state.go('app.adminmain');
 
-        HTTPService.login().then(function (res) {
-            console.log(res);
-        }, function (err) {
-            console.log(err);
-        });
+        // HTTPService.login().then(function (res) {
+        //     console.log(res);
+        // }, function (err) {
+        //     console.log(err);
+        // });
     }
 }
