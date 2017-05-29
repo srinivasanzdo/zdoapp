@@ -2,76 +2,82 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="icon-speedometer"></i> Dashboard</a>
+                <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.dashboard"><i class="icon-speedometer"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="icon-speedometer"></i> Dashboard</a>
+                <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.dashboard"><i class="icon-speedometer"></i> Dashboard</a>
             </li>
-           <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.customer')}">
-                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.customer')}" href="#"><i class="icon-book-open"></i> Application</a>
+           <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.admin')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.admin')}" href="#"><i class="icon-book-open"></i> Application</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.addcustomer" style="padding-left: 50px;"> All</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.allapp" style="padding-left: 50px;"> All</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.editcustomer" style="padding-left: 50px;"> New</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.newapp" style="padding-left: 50px;"> New</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Amend</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.amendapp" style="padding-left: 50px;"> Amend</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.approveapp" style="padding-left: 50px;"> Approved</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Rejected</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.rejectapp" style="padding-left: 50px;"> Rejected</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Re-Submission</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.resubmissionapp" style="padding-left: 50px;"> Re-Submission</a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.customer')}">
-                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.customer')}" href="#"><i class="icon-book-open"></i> Application</a>
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.agent')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.agent')}" href="#"><i class="icon-book-open"></i> Application</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.editcustomer" style="padding-left: 50px;"> New</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.newapp" style="padding-left: 50px;"> New</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.addcustomer" style="padding-left: 50px;"> Approved</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.allapp" style="padding-left: 50px;"> All</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.editcustomer" style="padding-left: 50px;"> Pending</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.approveapp" style="padding-left: 50px;"> Approved</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.editcustomer" style="padding-left: 50px;"> Received</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.pendingapp" style="padding-left: 50px;"> Pending</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Amend</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.receiveapp" style="padding-left: 50px;"> Received</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Rejected</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.amendapp" style="padding-left: 50px;"> Amend</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.customer.viewcustomer" style="padding-left: 50px;"> Draft</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.rejectapp" style="padding-left: 50px;"> Rejected</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.draftapp" style="padding-left: 50px;"> Draft</a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.physiocenter')}">
-                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.physiocenter')}" href="#"><i class="icon-people"></i> Agent</a>
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.admin')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.admin')}" href="#"><i class="icon-people"></i> Agent</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.addphysiocenter"><i class="fa fa-plus"></i> Add Agent</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.addagent"><i class="fa fa-plus"></i> Add Agent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.viewphysiocenter"><i class="fa fa-eye"></i> View Agent</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.viewagent"><i class="fa fa-eye"></i> View Agent</a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.physiocenter')}">
-                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.physiocenter')}" href="#"><i class="fa fa-line-chart"></i> Report</a>
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.admin')}">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.admin')}" href="#"><i class="fa fa-line-chart"></i> Report</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.addphysiocenter"><i class="fa fa-bar-chart"></i> Application Based</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.appbased"><i class="fa fa-bar-chart"></i> Application Based</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref-active="active" ui-sref="app.physiocenter.viewphysiocenter"><i class="fa fa-bar-chart"></i> Agent Based</a>
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.admin.agentbased"><i class="fa fa-bar-chart"></i> Agent Based</a>
                     </li>
                 </ul>
             </li>
