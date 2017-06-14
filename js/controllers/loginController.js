@@ -5,7 +5,7 @@ angular
 loginCtrl.$inject = ['$scope','$state'];
 function loginCtrl($scope, $state) {
     $scope.loginFunction = function (params) {
-        $state.go("app.main");
+        $state.go("app.admindashboard");
     }
 
 }
