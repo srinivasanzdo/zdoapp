@@ -2,18 +2,10 @@ angular
     .module('app')
     .controller('loginCtrl', loginCtrl);
 
-
-loginCtrl.$inject = ['$scope', '$state', 'HTTPService'];
-function loginCtrl($scope, $state, HTTPService) {
-    $scope.login = function () {
-        
-        //alert(HTTPService.login());
-        $state.go('app.admin.dashboard');
-
-        // HTTPService.login().then(function (res) {
-        //     console.log(res);
-        // }, function (err) {
-        //     console.log(err);
-        // });
+loginCtrl.$inject = ['$scope','$state'];
+function loginCtrl($scope, $state) {
+    $scope.loginFunction = function (params) {
+        $state.go("app.main");
     }
+
 }
