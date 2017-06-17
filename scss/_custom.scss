@@ -1,1 +1,27 @@
 // Here you can add other styles
+#loading-bar-container{
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+
+    span{
+        background-image: url('../img/467.gif');
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 11000;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        width: 100px;
+        height: 100px;
+    }
+
+    
+}
+
+
+

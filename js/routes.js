@@ -116,7 +116,7 @@ angular
       })
 
       .state('app.adminapplication', {
-        url: "/components",
+        url: "/admin",
         abstract: true,
         template: '<ui-view></ui-view>',
         ncyBreadcrumb: {
