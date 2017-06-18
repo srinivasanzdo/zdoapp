@@ -55,6 +55,7 @@ app-root {
     position: fixed;
     z-index: $zindex-sticky;
     width: 100%;
+    top:0;
   }
   .app-body {
     margin-top: $navbar-height;

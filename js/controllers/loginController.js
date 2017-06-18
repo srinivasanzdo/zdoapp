@@ -11,7 +11,10 @@ function loginCtrl($scope, $state, HTTPService) {
         };
 
         HTTPService.login(param).then(function (res) {
+            localStorage.setItem('user_token', res.data.token);
             HTTPService.currentuser(res.data.token).then(function (res) {
+                localStorage.setItem('user_id', res.data.user.id);
+                localStorage.setItem('user_role', res.data.user.role_id);
                 if (res.data.user.role_id == 1)
                     $state.go("app.admindashboard");
                 else

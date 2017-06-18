@@ -69,6 +69,12 @@ angular
               files: ['css/simple-line-icons.css']
             }]);
           }],
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/applicationController.js']
+            });
+          }]
           // loadPlugin: ['$ocLazyLoad', function ($ocLazyLoad) {
           //   // you can lazy load files for an existing module
           //   return $ocLazyLoad.load([{
@@ -140,6 +146,7 @@ angular
           }]
         }
       })
+
       .state('app.adminapplication.amendapp', {
         url: '/amendapplication',
         templateUrl: 'views/pages/admin/adminamendapp.html',
@@ -171,6 +178,7 @@ angular
           }]
         }
       })
+
       .state('app.adminapplication.newapp', {
         url: '/newapplication',
         templateUrl: 'views/pages/admin/adminnewapp.html',
@@ -186,6 +194,7 @@ angular
           }]
         }
       })
+
       .state('app.adminapplication.rejectapp', {
         url: '/rejectapplication',
         templateUrl: 'views/pages/admin/adminrejectapp.html',
@@ -201,6 +210,7 @@ angular
           }]
         }
       })
+
       .state('app.adminapplication.resubmissionapp', {
         url: '/resubmissionapplication',
         templateUrl: 'views/pages/admin/adminresubmissionapp.html',
@@ -212,6 +222,32 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/admin/adminresubmissionappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agent', {
+        url: "/agent",
+        abstract: true,
+        template: '<ui-view></ui-view>',
+        ncyBreadcrumb: {
+          label: 'Agent'
+        }
+      })
+
+      .state('app.agent.viewagentlist', {
+        url: '/agentlist',
+        templateUrl: 'views/pages/admin/agentlist.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Agent List',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/admin/agentlistController.js']
             });
           }]
         }

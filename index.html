@@ -23,6 +23,11 @@
     <!-- Main styles for this application -->
     <link href="css/style.css" rel="stylesheet">
 
+    <link href="css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="css/angular-datatables.css" rel="stylesheet">
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
+
 </head>
 
 <!-- BODY options, add following classes to body to change options
@@ -53,13 +58,15 @@
     <ui-view></ui-view>
 
     <script type="text/javascript">
-        window.domainURL="http://localhost/zdoapp/public/api/";
+        window.domainURL = "http://localhost/zdoapp/public/api/";
     </script>
 
     <!-- Bootstrap and necessary plugins -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/tether/dist/js/tether.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="js/jquery.dataTables.min.js"></script>
 
     <!-- AngularJS -->
     <script src="bower_components/angular/angular.min.js"></script>
@@ -69,6 +76,8 @@
     <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
     <script src="bower_components/angular-breadcrumb/dist/angular-breadcrumb.min.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+
+    <script src="js/angular-datatables.min.js"></script>
 
     <!-- AngularJS CoreUI App scripts -->
 
