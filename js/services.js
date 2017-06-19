@@ -1,5 +1,5 @@
 angular
-    .module('app').service('HTTPService', function ($http) {
+    .module('app').service('HTTPService', function ($http, $state) {
 
         this.login = function (params) {
             return $http({
@@ -7,6 +7,19 @@ angular
                 url: domainURL + "authenticate",
                 data: params
             });
+        }
+
+        this.logout = function () {
+
+            localStorage.setItem('user_token', "");
+            localStorage.setItem('user_id', "");
+            localStorage.setItem('user_role', "");
+
+            localStorage.removeItem('user_token')
+            localStorage.removeItem('user_id')
+            localStorage.removeItem('user_role')
+
+            $state.go("appSimple.login");
         }
 
         this.currentuser = function (params) {
@@ -21,15 +34,51 @@ angular
             });
         }
 
+        this.getUser = function () {
+            var user_id = localStorage.getItem('user_id');
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "user/" + user_id,
+
+            });
+        }
+
+        this.getAgentList = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getAgentList",
+
+            });
+        }
+
+        this.addAgent = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "createAgent",
+                data: params
+
+            });
+        }
+
     });
 
 angular
     .module('app').factory('AuthFactory', ['$q', '$rootScope', '$http', '$state',
         function ($q, $rootScope, $http, $state) {
-            var currentUser = '';
             var factory = {
-                isLoggedIn: isLoggedIn,
-                getCurrentUser: getUserInfo
+                isLoggedIn: isLoggedIn
             };
 
             var defer = $q.defer();
@@ -37,20 +86,20 @@ angular
                 var user_id = localStorage.getItem('user_id');
                 if (user_id) {
                     var url = domainURL + 'user/' + user_id;
-                    return $http.get(url).success(function (res) {
-                        currentUser = res;
-                    }).error(function (err) {
-                        $state.go('login');
+                    return $http({
+                        method: "get",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + localStorage.getItem('user_token')
+                        },
+                        url: url
                     });
                 } else {
                     defer.resolve(false);
-                    $state.go('login');
+                    $state.go('appSimple.login');
                     return defer.promise;
                 }
             };
 
-            function getUserInfo() {
-                return currentUser;
-            };
             return factory;
         }]);

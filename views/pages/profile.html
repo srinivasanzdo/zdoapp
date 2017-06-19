@@ -1,0 +1,35 @@
+<div class="animated fadeIn" ng-controller="profileCtrl">
+    <div class="row profile">
+		<div class="col-md-12">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<center>
+                        <img style="width:200px; height:200px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB2fSho49qDv9-x5Y_r1hcN0PnPw6QWkkjIYzNJ0u-LASiWWBj" alt="">
+					</center>
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						{{profile.name}}
+					</div>
+					<div class="profile-usertitle-job">
+						{{profile.role.name}}
+					</div>
+                    <div>
+                        {{profile.email}}
+                    </div>
+                    <div>
+                        {{profile.phone}}
+                    </div>
+                    <div>
+                        {{profile.gender}}
+                    </div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

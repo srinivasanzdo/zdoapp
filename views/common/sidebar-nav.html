@@ -1,13 +1,13 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
-            <li class="nav-item">
+            <li class="nav-item" ng-if="!isAgent">
                 <a class="nav-link" ui-sref-active="active" ui-sref="app.admindashboard"><i class="icon-speedometer"></i> Dashboard </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-if="isAgent">
                 <a class="nav-link" ui-sref-active="active" ui-sref="app.agentdashboard"><i class="icon-speedometer"></i> Dashboard </a>
             </li>
-            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.adminapplication')}">
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.adminapplication')}" ng-if="!isAgent">
                 <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.adminapplication')}" href="#"><i class="icon-book-open"></i> Application</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
@@ -30,7 +30,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-if="!isAgent">
                 <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.viewagentlist"><i class="icon-speedometer"></i> Agent </a>
             </li>
         </ul>

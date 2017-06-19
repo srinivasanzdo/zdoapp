@@ -4,6 +4,22 @@ angular
 
     //$urlRouterProvider.otherwise('/dashboard');
 
+    var authenticated = ['$q', 'AuthFactory', '$state', function ($q, AuthFactory, $state) {
+      var deferred = $q.defer();
+      console.log(AuthFactory.isLoggedIn());
+      AuthFactory.isLoggedIn()
+        .then(function (isLoggedIn) {
+          if (isLoggedIn.data.id) {
+            deferred.resolve();
+          } else {
+            deferred.reject('Not logged in');
+            defer.resolve(false);
+            $state.go('appSimple.login');
+          }
+        });
+      return deferred.promise;
+    }];
+
     $urlRouterProvider.otherwise('/login');
 
     $ocLazyLoadProvider.config({
@@ -89,6 +105,23 @@ angular
         }
       })
 
+      .state('app.profile', {
+        url: '/profile',
+        templateUrl: 'views/pages/profile.html',
+        ncyBreadcrumb: {
+          label: 'Profile',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/profileController.js']
+            });
+          }]
+        }
+      })
+
       .state('app.admindashboard', {
         url: '/admin-dashboard',
         templateUrl: 'views/pages/admin/admindashboard.html',
@@ -96,6 +129,7 @@ angular
           label: 'Admin Dashboard',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -112,6 +146,7 @@ angular
           label: 'Agent Dashboard',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -138,6 +173,7 @@ angular
           label: 'All Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -155,6 +191,7 @@ angular
           label: 'Amend Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -170,6 +207,7 @@ angular
           label: 'Approved Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -186,6 +224,7 @@ angular
           label: 'New Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -202,6 +241,7 @@ angular
           label: 'Rejected Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -218,6 +258,7 @@ angular
           label: 'Resubmission Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -244,10 +285,47 @@ angular
           label: 'Agent List',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/admin/agentlistController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agent.addagent', {
+        url: '/addagent',
+        templateUrl: 'views/pages/admin/addagent.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Add Agent',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/admin/addagentController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agent.editagent', {
+        url: '/editagent/:id',
+        templateUrl: 'views/pages/admin/editagent.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Edit Agent',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/admin/editagentController.js']
             });
           }]
         }

@@ -1,0 +1,74 @@
+<div class="animated fadeIn" ng-init="agent.gender='Male'" ng-controller="addagentCtrl">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Agent</strong> Form
+            </div>
+            <div class="card-block">
+                <form class="form-horizontal" name="agentForm">
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentname">Agent Name <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <input class="form-control" type='text' name='agentname' ng-model='agent.name' placeholder="Enter Agent Name.." required>
+                            <span class="form-label-warning" ng-show="agentForm.agentname.$touched && agentForm.agentname.$error.required">The Agent name is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentemail">Email <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <input class="form-control" type='email' validate-email name='agentemail' ng-model='agent.email' placeholder="Enter Email.."
+                                required>
+                            <span class="form-label-warning" ng-show="agentForm.agentemail.$touched && agentForm.agentemail.$error.required">The email is required.</span>
+                            <span class="form-label-warning" ng-show="agentForm.agentemail.$error.email">The email is invalid.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentphone">Mobile <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <input class="form-control" type='number' name='agentphone' ng-model='agent.phone' placeholder="Enter Mobile number.." required
+                                minlength="8" maxlength="8">
+                            <span class="form-label-warning" ng-show="agentForm.agentphone.$touched && agentForm.agentphone.$error.required">The mobile number is required.</span>
+                            <span class="form-label-warning" ng-show="agentForm.agentphone.$error.maxlength || agentForm.agentphone.$error.minlength">The mobile is invalid.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentpassword">Password <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <input class="form-control" type='password' name='agentpassword' ng-model='agent.password' required>
+                            <span class="form-label-warning" ng-show="agentForm.agentpassword.$touched && agentForm.agentpassword.$error.required">Password is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentcpassword">Confirm Password <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <input class="form-control" type='password' name='agentcpassword' ng-model='agent.cpassword' required>
+                            <span class="form-label-warning" ng-show="agentForm.agentcpassword.$touched && agent.cpassword!= agent.password">Password mismatch.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="agentcpassword">Gender <span class="form-label-warning">*</span> </label>
+                        <div class="col-md-9">
+                            <label class="radio-inline" for="agent-male">
+                                <input type="radio" id="agent-male" name="agentgender" ng-model="agent.gender" value="Male"> Male
+                            </label>
+                            <label class="radio-inline" for="agent-female">
+                                <input type="radio" id="agent-female" name="agentgender" ng-model="agent.gender" value="Female"> Female
+                            </label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <button ng-disabled="agentForm.$invalid" type="button" ng-click="submit(agent)" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <button ng-click="resetForm()" type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
