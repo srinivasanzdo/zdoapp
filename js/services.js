@@ -72,6 +72,90 @@ angular
             });
         }
 
+        this.getAgentAllApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserAllApplication/" + id,
+
+            });
+        }
+
+        this.getAgentPendingApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserPendingApplication/" + id,
+
+            });
+        }
+
+        this.getAgentAmendApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserAmendApplication/" + id,
+
+            });
+        }
+
+        this.getAgentDraftApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserDraftApplication/" + id,
+
+            });
+        }
+
+        this.getAgentApprovedApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserApprovedApplication/" + id,
+
+            });
+        }
+
+        this.getAgentRejectedApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserRejectedApplication/" + id,
+
+            });
+        }
+
+        this.getAgentReceivedApp = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserReceivedApplication/" + id,
+
+            });
+        }
+
     });
 
 angular

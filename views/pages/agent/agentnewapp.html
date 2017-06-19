@@ -1,0 +1,258 @@
+<div class="animated fadeIn" ng-controller="agentnewappCtrl">
+    <form class="ng-pristine ng-valid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Normal</strong> Form
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nf-email">Name</label>
+                                    <input type="email" id="nf-email" name="nf-email" class="form-control" placeholder="Enter Email..">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nf-email">DOB</label>
+                                    <datepicker date-format="yyyy-MM-dd">
+                                        <input ng-model="date" type="text" class="form-control" />
+                                    </datepicker>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="form-group">
+                                    <label for="nf-password">Contact</label>
+                                    <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nf-password">NRIC</label>
+                                    <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nf-password">Gender</label>
+                                    <div class="radio">
+                                        <label for="radio1">
+                                        <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                    </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label for="radio1">
+                                        <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                    </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nf-password">Occupation</label>
+                                    <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Normal</strong> Form
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group">
+                            <label for="nf-email">Next of Kin (NOK) name and relationship</label>
+                            <input type="email" id="nf-email" name="nf-email" class="form-control" placeholder="Enter Email..">
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password">Contact of NOK</label>
+                            <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password">Type of shield plan (with or without rider) / PA plan & Inforce date</label>
+                            <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>Any Pending Claims for the current shield plan?</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>Any other cash paying entitlement policies(MC or daily hospitalization cash benefits)</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password">Cause of complaint</label>
+                            <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password">Signs and Symptoms</label>
+                            <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password..">
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-email">Preffered date of admission</label>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="date" type="text" class="form-control" />
+                            </datepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Normal</strong> Form
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group">
+                            <label for="nf-password"><strong>Any Exclusion in plans?</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>Any Pre-existing conditions/ medical condition & medicine / past operation done not mentioned in policy</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>High Blood Pressure</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>Diabetes</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password"><strong>High Cholesterol</strong></label>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-email">Any of the above is Yes, date of diagnosis</label>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="date" type="text" class="form-control" />
+                            </datepicker>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <label for="textarea-input">Remark</label>
+                            <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Content.." style="margin-top: 0px; margin-bottom: 0px; height: 171px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Normal</strong> Form
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-input">NRIC FRONT</label>
+                                    <div class="col-md-9">
+                                        <input type="file" id="file-input1" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files)">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-input">NRIC BACK</label>
+                                    <div class="col-md-9">
+                                        <input type="file" id="file-input" name="file-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-input">DOCUMENT </label>
+                                    <div class="col-md-9">
+                                        <input type="file" id="file-input" name="file-input">
+                                    </div>
+                                </div>
+
+                                <button ng-click="add()" class="btn btn-sm btn-success">Upload New Document</button>
+                                <br/><br/>
+                                <div ng-repeat="item in items">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label" for="file-input">DOCUMENT {{item.length}} </label>
+                                        <div class="col-md-9">
+                                            <input type="file" id="file-input" name="file-input">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>

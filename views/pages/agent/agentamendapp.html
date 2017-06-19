@@ -1,0 +1,30 @@
+<div class="animated fadeIn" ng-controller="agentamendappCtrl">
+    
+    <table datatable="ng" class="row-border hover">
+        <thead>
+            <tr>
+                <!--<th>Options</th>-->
+                <th>ID</th>
+                <th>NRIC</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Mobile</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="app in appList">
+                <!--<td>
+                    
+                </td>-->
+                <td>{{ app.id }}</td>
+                <td>{{ app.nric }}</td>
+                <td>{{ app.name }}</td>
+                <td>{{ app.gender }}</td>
+                <td>{{ app.contact }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+</div>

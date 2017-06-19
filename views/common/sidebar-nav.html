@@ -33,6 +33,35 @@
             <li class="nav-item" ng-if="!isAgent">
                 <a class="nav-link" ui-sref-active="active" ui-sref="app.agent.viewagentlist"><i class="icon-speedometer"></i> Agent </a>
             </li>
+            <li class="nav-item nav-dropdown" ng-class="{open: $state.includes('app.agentapplication')}" ng-if="isAgent">
+                <a class="nav-link nav-dropdown-toggle" ng-class="{active: $state.includes('app.agentapplication')}" href="#"><i class="icon-book-open"></i> Application</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.allapp" style="padding-left: 50px;"> All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.newapp" style="padding-left: 50px;"> New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.pendingapp" style="padding-left: 50px;"> Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.receiveapp" style="padding-left: 50px;"> Receive</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.amendapp" style="padding-left: 50px;"> Amend</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.approveapp" style="padding-left: 50px;"> Approved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.rejectapp" style="padding-left: 50px;"> Rejected</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref-active="active" ui-sref="app.agentapplication.draftapp" style="padding-left: 50px;"> Draft</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>

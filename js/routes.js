@@ -331,4 +331,149 @@ angular
         }
       })
 
+      .state('app.agentapplication', {
+        url: "/agentapp",
+        abstract: true,
+        template: '<ui-view></ui-view>',
+        ncyBreadcrumb: {
+          label: 'Application'
+        }
+      })
+
+      .state('app.agentapplication.newapp', {
+        url: '/newapplication',
+        templateUrl: 'views/pages/agent/agentnewapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'New Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentnewappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.allapp', {
+        url: '/allapplication',
+        templateUrl: 'views/pages/agent/agentallapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'All Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentallappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.pendingapp', {
+        url: '/pendingapplication',
+        templateUrl: 'views/pages/agent/agentpendingapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Pending Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentpendingappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.receiveapp', {
+        url: '/receiveapplication',
+        templateUrl: 'views/pages/agent/agentreceiveapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Receive Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentreceiveappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.amendapp', {
+        url: '/amendapplication',
+        templateUrl: 'views/pages/agent/agentamendapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Amend Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentamendappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.approveapp', {
+        url: '/approveapplication',
+        templateUrl: 'views/pages/agent/agentapproveapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Approved Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentapproveappController.js']
+            });
+          }]
+        }
+      })
+      
+      .state('app.agentapplication.rejectapp', {
+        url: '/rejectapplication',
+        templateUrl: 'views/pages/agent/agentrejectapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Rejected Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentrejectappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.draftapp', {
+        url: '/draftapplication',
+        templateUrl: 'views/pages/agent/agentdraftapp.html',
+        //page title goes here
+        ncyBreadcrumb: {
+          label: 'Draft Application',
+        },
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/agentdraftappController.js']
+            });
+          }]
+        }
+      })
+
   }]);
