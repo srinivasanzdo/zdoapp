@@ -25,6 +25,7 @@ function loginCtrl($scope, $state, HTTPService) {
 
         }, function (err) {
             console.log("login error----", err);
+            alert("Invalid credentials");
         });
     }
 

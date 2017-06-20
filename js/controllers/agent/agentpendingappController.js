@@ -22,4 +22,8 @@ function agentpendingappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentPendingAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

@@ -22,4 +22,8 @@ function agentrejectappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentRejectAppList();
 
+    $scope.showApplication = function (aid) {
+        $state.go('app.singleapplication', { id: aid });
+    }
+
 }

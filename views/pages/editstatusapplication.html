@@ -1,0 +1,187 @@
+<div class="animated fadeIn" ng-controller="editstatusapplicationCtrl">
+    <form name="appForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="select">Select</label>
+                    <div class="col-md-9">
+                        <!--<select id="select" name="select" class="form-control" size="1">
+                            <option value="0">Please select</option>
+                            <option value="2">Amend</option>
+                            <option value="4">Approved</option>
+                            <option value="5">Rejected</option>
+                        </select>-->
+                        <select class="form-control" ng-model="selectedOption" ng-options="option.name for option in options"></select>
+                        <br/>
+                        <br/>
+
+                        <button ng-click="submitStatus(selectedOption,remark)" ng-disabled="selectedOption.value == 0" type="button" class="btn btn-success"> Update Status </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="select">Remark</label>
+                    <div class="col-md-9">
+                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" ng-model="remark" placeholder="Remark.."
+                            style="margin-top: 0px; margin-bottom: 0px; height: 171px;resize:none;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--<div class="row">
+        <center>
+            <button ng-click="submitStatus(application)" ng-disabled="application.status=='0'" type="button" class="btn btn-success"> Draft Application </button>
+        </center>
+    </div>-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Personal Information</strong> Details
+                </div>
+                <div class="card-block">
+                    <table border="1" cellpadding="10" cellspacing="10" style="width:100%">
+                        <tr>
+                            <td class="bb">Name </td>
+                            <td>{{application.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">NRIC </td>
+                            <td>{{application.nric}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">DOB </td>
+                            <td>{{application.dob}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Gender </td>
+                            <td>{{application.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Contact </td>
+                            <td>{{application.contact}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Occupation </td>
+                            <td>{{application.occupation}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Next of Kin (NOK) name and relationship </td>
+                            <td>{{application.nok_relationship}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Contact of NOK </td>
+                            <td>{{application.contact_nok}}</td>
+                        </tr>
+                        <tr ng-repeat="photo in application.image">
+                            <td class="bb">{{photo.type}} </td>
+                            <td><button ng-click="getImagebyName(photo.path)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Policy Information</strong> Details
+                </div>
+                <div class="card-block">
+                    <table border="1" cellpadding="10" cellspacing="10" style="width:100%">
+                        <tr>
+                            <td class="bb">Type of shield plan (with or without rider) / PA plan & Inforce date </td>
+                            <td>{{application.shieldplan_paplan_date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Any Pending Claims for the current shield plan ? </td>
+                            <td>{{application.pending_claims}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Any other cash paying entitlement policies(MC or daily hospitalization cash benefits) </td>
+                            <td>{{application.other_entitlement_policies}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Cause of complaint </td>
+                            <td>{{application.cause_complaint}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Signs and Symptoms </td>
+                            <td>{{application.signs_symptoms}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Preffered date of admission </td>
+                            <td>{{application.preffereddate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Any Exclusion in plans? </td>
+                            <td>{{application.exclusionplan}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Pre-existing conditions</strong> Details
+                </div>
+                <div class="card-block">
+                    <table border="1" cellpadding="10" cellspacing="10" style="width:100%">
+                        <tr>
+                            <td class="bb">Any Pre-existing conditions/ medical condition & medicine / past operation done not mentioned
+                                in policy </td>
+                            <td>{{application.preexisting_condition}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">High Blood Pressure </td>
+                            <td>{{application.high_blood_pressure}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Diabetes </td>
+                            <td>{{application.diabetes}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">High Cholesterol </td>
+                            <td>{{application.high_cholesterol}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Date of diagnosis </td>
+                            <td>{{application.diagnosisdate}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Document</strong> Details
+                </div>
+                <div class="card-block">
+                    <table border="1" cellpadding="10" cellspacing="10" style="width:100%">
+                        <tr>
+                            <td class="bb">Status </td>
+                            <td>{{application.status.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Remark </td>
+                            <td>{{application.remark}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Amend Remark </td>
+                            <td>{{application.amend_remark}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Reject Remark </td>
+                            <td>{{application.reject_remark}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

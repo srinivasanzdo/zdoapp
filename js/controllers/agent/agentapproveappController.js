@@ -22,4 +22,8 @@ function agentapproveappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentApproveAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

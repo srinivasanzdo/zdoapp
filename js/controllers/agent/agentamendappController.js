@@ -22,4 +22,8 @@ function agentamendappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentAmendAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

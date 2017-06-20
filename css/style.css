@@ -9030,3 +9030,25 @@ hr.transparent {
   padding: 20px;
   background: #fff;
   min-height: 460px; }
+
+.p-a-1 {
+  padding: 1rem !important; }
+
+.m-r-1, .m-x-1 {
+  margin-right: 1rem !important; }
+
+.bg-mrx {
+  color: #fff !important;
+  background-color: #7e57c2 !important; }
+
+.bg-mrx1 {
+  color: #fff !important;
+  background-color: #26a69a !important; }
+
+.bg-mrx2 {
+  color: #fff !important;
+  background-color: #000 !important; }
+
+.bb {
+  font-weight: bolder;
+  width: 40%; }

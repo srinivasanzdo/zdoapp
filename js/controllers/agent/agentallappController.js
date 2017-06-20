@@ -22,4 +22,8 @@ function agentallappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentAllAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

@@ -72,14 +72,14 @@ angular
             });
         }
 
-         this.updateAgent = function (params) {
+        this.updateAgent = function (params) {
             return $http({
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
-                url: domainURL + "user/"+localStorage.getItem('user_id'),
+                url: domainURL + "user/" + localStorage.getItem('user_id'),
                 data: params
 
             });
@@ -205,7 +205,7 @@ angular
             });
         }
 
-         this.getApprovedApp = function () {
+        this.getApprovedApp = function () {
             return $http({
                 method: "get",
                 headers: {
@@ -225,6 +225,68 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "getRejectedApplication",
+
+            });
+        }
+
+        this.getAllAppCount = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getApplicationCount",
+
+            });
+        }
+
+        this.getUserAllAppCount = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getUserApplicationCount/" + id,
+
+            });
+        }
+
+        this.addApplication = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "application",
+                data: params
+
+            });
+        }
+
+        this.updateApplication = function (params, id) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "updateApplication/" + id,
+                data: params
+
+            });
+        }
+
+        this.getSingleApplication = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getApplication/" + id,
 
             });
         }

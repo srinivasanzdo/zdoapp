@@ -22,4 +22,8 @@ function agentdraftappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentDraftAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

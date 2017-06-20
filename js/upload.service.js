@@ -21,9 +21,17 @@
         this.listAllS3Data = listAllS3Data;
 
         function Upload(file) {
+
+            function randomString(length, chars) {
+                var result = '';
+                for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+                return result;
+            }
+            var rString = "zdo_" + randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') + '_';
             var deferred = $q.defer();
+
             // Bucket - has to be your bucket name
-            var params = { Bucket: 'ang-test', Key: file.name, ContentType: file.type, Body: file };
+            var params = { Bucket: 'ang-test', Key: rString + file.name, ContentType: file.type, Body: file };
             var options = {
                 // Part Size of 10mb
                 partSize: 10 * 1024 * 1024,
@@ -65,7 +73,7 @@
             bucket.listObjects(function (err, data) {
                 if (err) {
                     console.log(err);
-                     deferred.reject(err);
+                    deferred.reject(err);
                 } else {
                     console.log(data);
                     deferred.resolve(data);

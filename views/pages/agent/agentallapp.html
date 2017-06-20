@@ -3,7 +3,7 @@
     <table datatable="ng" class="row-border hover">
         <thead>
             <tr>
-                <!--<th>Options</th>-->
+                <th>Options</th>
                 <th>ID</th>
                 <th>NRIC</th>
                 <th>Name</th>
@@ -15,9 +15,9 @@
         </thead>
         <tbody>
             <tr ng-repeat="app in appList">
-                <!--<td>
-                    
-                </td>-->
+                <td>
+                    <button ng-click="showApplication(app.id)" class="btn btn-sm btn-primary" type="button"><i class="fa fa-eye"></i></button>
+                </td>
                 <td>{{ app.id }}</td>
                 <td>{{ app.nric }}</td>
                 <td>{{ app.name }}</td>

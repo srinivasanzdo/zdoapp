@@ -6,7 +6,7 @@ angular
 
     var authenticated = ['$q', 'AuthFactory', '$state', function ($q, AuthFactory, $state) {
       var deferred = $q.defer();
-      console.log(AuthFactory.isLoggedIn());
+      //console.log(AuthFactory.isLoggedIn());
       AuthFactory.isLoggedIn()
         .then(function (isLoggedIn) {
           if (isLoggedIn.data.id) {
@@ -117,6 +117,23 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/profileController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.changepassword', {
+        url: '/changepassword',
+        templateUrl: 'views/pages/changepassword.html',
+        ncyBreadcrumb: {
+          label: 'Change Password',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/changepasswordController.js']
             });
           }]
         }
@@ -488,6 +505,40 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/agent/agentdraftappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.singleapplication', {
+        url: '/application/:id',
+        templateUrl: 'views/pages/singleapplication.html',
+        ncyBreadcrumb: {
+          label: 'Application Details',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/singleapplicationController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.editstatusapplication', {
+        url: '/editstatusapplication/:id/:type',
+        templateUrl: 'views/pages/editstatusapplication.html',
+        ncyBreadcrumb: {
+          label: 'Edit Application Details',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/editstatusapplicationController.js']
             });
           }]
         }

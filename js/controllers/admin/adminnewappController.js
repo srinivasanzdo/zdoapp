@@ -22,4 +22,12 @@ function adminnewappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadNewAppList();
 
+    $scope.showApplication = function (aid) {
+        $state.go('app.singleapplication', { id: aid });
+    }
+
+    $scope.showApplicationEdit = function (aid) {
+        $state.go('app.editstatusapplication', { id: aid, type:'pending' });
+    }
+
 }

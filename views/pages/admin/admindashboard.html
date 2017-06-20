@@ -1,3 +1,90 @@
 <div class="animated fadeIn" ng-controller="admindashboardCtrl">
-<h1>admin dash.....</h1>
-</div>
+    <div class="row">
+        <div class="col-xxs-12 col-xs-6 col-lg-6">
+            <div class="card">
+                <div class="card-block p-a-1 clearfix">
+                    <i class="icon-people bg-primary p-a-1 font-2xl m-r-1 pull-left"></i>
+                    <div class="h5 text-primary m-b-0 m-t-h">{{all}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold font-xs">All Applications</div>
+                </div>
+                <div class="card-footer p-x-1 p-y-h" ng-click="gotoAllApplication()">
+                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxs-12 col-xs-6 col-lg-6">
+            <div class="card">
+                <div class="card-block p-a-1 clearfix">
+                    <i class="icon-people bg-success p-a-1 font-2xl m-r-1 pull-left"></i>
+                    <div class="h5 text-primary m-b-0 m-t-h">{{new}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold font-xs">New Applications</div>
+                </div>
+                <div class="card-footer p-x-1 p-y-h" ng-click="gotoNewApplication()">
+                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xxs-12 col-xs-6 col-lg-6">
+            <div class="card">
+                <div class="card-block p-a-1 clearfix">
+                    <i class="icon-people bg-warning p-a-1 font-2xl m-r-1 pull-left"></i>
+                    <div class="h5 text-primary m-b-0 m-t-h">{{amend}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold font-xs">Amend Applications</div>
+                </div>
+                <div class="card-footer p-x-1 p-y-h" ng-click="gotoAmendApplication()">
+                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxs-12 col-xs-6 col-lg-6">
+            <div class="card">
+                <div class="card-block p-a-1 clearfix">
+                    <i class="icon-people bg-danger p-a-1 font-2xl m-r-1 pull-left"></i>
+                    <div class="h5 text-primary m-b-0 m-t-h">{{reject}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold font-xs">Rejected Applications</div>
+                </div>
+                <div class="card-footer p-x-1 p-y-h" ng-click="gotoRejectApplication()">
+                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xxs-12 col-xs-6 col-lg-6">
+            <div class="card">
+                <div class="card-block p-a-1 clearfix">
+                    <i class="icon-people bg-mrx1 p-a-1 font-2xl m-r-1 pull-left"></i>
+                    <div class="h5 text-primary m-b-0 m-t-h">{{approve}}</div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">Approved Applications</div>
+                    </div>
+                    <div class="card-footer p-x-1 p-y-h" ng-click="gotoApproveApplication()">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxs-12 col-xs-6 col-lg-6">
+                <div class="card">
+                    <div class="card-block p-a-1 clearfix">
+                        <i class="icon-people bg-mrx p-a-1 font-2xl m-r-1 pull-left"></i>
+                        <div class="h5 text-primary m-b-0 m-t-h">{{resubmit}}</div>
+                        <div class="text-muted text-uppercase font-weight-bold font-xs">Re-Submitted Applications</div>
+                    </div>
+                    <div class="card-footer p-x-1 p-y-h" ng-click="gotoResubmitApplication()">
+                        <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+
+
+
+    </div>

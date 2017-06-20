@@ -22,4 +22,8 @@ function agentreceiveappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAgentReceiveAppList();
 
+    $scope.showApplication = function(aid){
+        $state.go('app.singleapplication',{id: aid});
+    }
+
 }

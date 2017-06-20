@@ -22,4 +22,8 @@ function adminallappCtrl($rootScope, $scope, $state, HTTPService) {
 
     loadAllAppList();
 
+    $scope.showApplication = function (aid) {
+        $state.go('app.singleapplication', { id: aid });
+    }
+
 }
