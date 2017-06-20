@@ -122,6 +122,23 @@ angular
         }
       })
 
+      .state('app.editprofile', {
+        url: '/editprofile',
+        templateUrl: 'views/pages/editprofile.html',
+        ncyBreadcrumb: {
+          label: 'Edit Profile',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/editprofileController.js']
+            });
+          }]
+        }
+      })
+
       .state('app.admindashboard', {
         url: '/admin-dashboard',
         templateUrl: 'views/pages/admin/admindashboard.html',

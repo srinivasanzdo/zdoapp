@@ -14,4 +14,8 @@ function profileCtrl($rootScope, $scope, $state, HTTPService) {
             alert("Session Expired...");
         }
     });
+
+    $scope.editProfile = function (){
+        $state.go('app.editprofile');
+    }
 }

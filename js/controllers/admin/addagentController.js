@@ -6,7 +6,7 @@ addagentCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService', '$windo
 function addagentCtrl($rootScope, $scope, $state, HTTPService, $window) {
 
     $scope.submit = function (agent) {
-        console.log("agent---", agent);
+        //console.log("agent---", agent);
         if (agent.password != agent.cpassword) {
             alert("Password , Confirm password are mismatch");
         } else {

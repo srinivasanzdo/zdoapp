@@ -72,6 +72,19 @@ angular
             });
         }
 
+         this.updateAgent = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "user/"+localStorage.getItem('user_id'),
+                data: params
+
+            });
+        }
+
         this.getAgentAllApp = function (id) {
             return $http({
                 method: "get",
@@ -152,6 +165,66 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "getUserReceivedApplication/" + id,
+
+            });
+        }
+
+        this.getAllApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getAllApplication",
+
+            });
+        }
+
+        this.getPendingApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getPendingApplication",
+
+            });
+        }
+
+        this.getAmendApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getAmendApplication",
+
+            });
+        }
+
+         this.getApprovedApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getApprovedApplication",
+
+            });
+        }
+
+        this.getRejectedApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getRejectedApplication",
 
             });
         }
