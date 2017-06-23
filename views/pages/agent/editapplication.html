@@ -1,38 +1,35 @@
-<div class="animated fadeIn" ng-init="application.gender='Male'" ng-controller="agentnewappCtrl">
-
-    <div>
-        <center>
-            <button type="button" class="btn btn-success" ng-click="applicationEmail()"> Application share via EMAIL </button>            &nbsp; &nbsp; &nbsp; &nbsp;
-            <button ng-show="isMobile" type="button" class="btn btn-success" ng-click="applicationWhatsapp()"> Application share via WHATSAPP </button>
-        </center>
-    </div>
-    <br/>
-    <br/>
-
-    <div ng-show = "showEmailForm">
-        <form name="emailForm">
-
-            <div class="form-group row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <input class="form-control" type='email' validate-email name='customeremail' ng-model='customeremail' placeholder="Enter Email.."
-                        required>
-                    <span class="form-label-warning" ng-show="emailForm.customeremail.$touched && emailForm.customeremail.$error.required">The email is required.</span>
-                    <span class="form-label-warning" ng-show="emailForm.customeremail.$error.email">The email is invalid.</span>
-                </div>
-            </div>
-            <center>
-                <button ng-disabled="emailForm.$invalid" type="button" ng-click="emailSubmit(customeremail)" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Send Mail</button>
-            </center>
-
-        </form>
-    </div>
-
-    <br/>
-    <br/>
-
+<div class="animated fadeIn" ng-controller="editapplicationCtrl">
     <form name="appForm">
 
+        <div class="row" ng-show = " isAmend || isReject ">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Remark</strong>
+                    </div>
+                    <div class="card-block">
+                        <div class="row" ng-show="isAmend">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="textarea-input-1"> Amend Remark</label>
+                                    <textarea readonly id="textarea-input-1" name="textarea-input-1" rows="9" class="form-control" ng-model="application.amend_remark"
+                                        style="margin-top: 0px; margin-bottom: 0px; height: 171px;resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="isReject">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="textarea-input-2"> Reject Remark</label>
+                                    <textarea readonly id="textarea-input-2" name="textarea-input-2" rows="9" class="form-control" ng-model="application.reject_remark"
+                                        style="margin-top: 0px; margin-bottom: 0px; height: 171px;resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -282,19 +279,22 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">NRIC FRONT <span class="form-label-warning">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input1" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_front')">
+                                        <input type="file" id="file-input1" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_front')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button ng-click="getImagebyName(nric_front)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">NRIC BACK <span class="form-label-warning">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_back')">
+                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_back')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button ng-click="getImagebyName(nric_back)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">DOCUMENT <span class="form-label-warning">*</span> </label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'document')">
+                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'document')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button ng-click="getImagebyName(documents)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
                                     </div>
                                 </div>
 
@@ -319,8 +319,7 @@
 
         <div>
             <center>
-                <button ng-click="submit(application,3)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Draft Application </button>                &nbsp;&nbsp;&nbsp;
-                <button ng-click="submit(application,1)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Submit Application </button>
+                <button ng-click="submit(application)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Submit Application </button>
             </center>
         </div>
 

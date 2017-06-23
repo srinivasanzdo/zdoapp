@@ -14,10 +14,13 @@ angular
             localStorage.setItem('user_token', "");
             localStorage.setItem('user_id', "");
             localStorage.setItem('user_role', "");
+            localStorage.setItem('user_show_name', "");
 
-            localStorage.removeItem('user_token')
-            localStorage.removeItem('user_id')
-            localStorage.removeItem('user_role')
+            localStorage.removeItem('user_token');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('user_role');
+            localStorage.removeItem('user_show_name');
+            
 
             $state.go("appSimple.login");
         }
@@ -225,6 +228,18 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "getRejectedApplication",
+
+            });
+        }
+
+        this.getResubmitApp = function () {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "getResubmitApplication",
 
             });
         }

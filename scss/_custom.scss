@@ -163,5 +163,10 @@
   width: 40%;
 }
 
-
+@media (max-width: 600px) {
+  .overflowx{
+    width:100%;
+    overflow-x: scroll;
+  }
+}
 

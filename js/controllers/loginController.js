@@ -15,6 +15,7 @@ function loginCtrl($scope, $state, HTTPService) {
             HTTPService.currentuser(res.data.token).then(function (res) {
                 localStorage.setItem('user_id', res.data.user.id);
                 localStorage.setItem('user_role', res.data.user.role_id);
+                localStorage.setItem('user_show_name', res.data.user.name);
                 if (res.data.user.role_id == 1)
                     $state.go("app.admindashboard");
                 else
@@ -27,6 +28,23 @@ function loginCtrl($scope, $state, HTTPService) {
             console.log("login error----", err);
             alert("Invalid credentials");
         });
+    }
+
+    $scope.doSomething = function (login) {
+        console.log(login);
+
+        if (login) {
+            if (!login.username) {
+                alert("Please enter Username...");
+            } else if (!login.password) {
+                alert("Please enter Password...");
+            } else {
+                $scope.loginFunction(login);
+            }
+
+        } else {
+            alert("Please enter login credentials...");
+        }
     }
 
 

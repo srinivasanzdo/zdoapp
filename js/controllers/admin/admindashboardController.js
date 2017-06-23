@@ -36,27 +36,37 @@ function admindashboardCtrl($rootScope, $scope, $state, AuthFactory, HTTPService
         }
     });
 
-    $scope.gotoAllApplication = function(){
+    HTTPService.getResubmitApp().then(function (res) {
+        $scope.resubmit = res.data.length;
+    }, function (err) {
+        console.log(err);
+        if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+            HTTPService.logout();
+            alert("Session Expired...");
+        }
+    });
+
+    $scope.gotoAllApplication = function () {
         $state.go('app.adminapplication.allapp');
     }
 
-    $scope.gotoNewApplication = function(){
+    $scope.gotoNewApplication = function () {
         $state.go('app.adminapplication.newapp');
     }
 
-    $scope.gotoAmendApplication = function(){
+    $scope.gotoAmendApplication = function () {
         $state.go('app.adminapplication.amendapp');
     }
 
-    $scope.gotoRejectApplication = function(){
+    $scope.gotoRejectApplication = function () {
         $state.go('app.adminapplication.rejectapp');
     }
 
-    $scope.gotoApproveApplication = function(){
+    $scope.gotoApproveApplication = function () {
         $state.go('app.adminapplication.approveapp');
     }
 
-    $scope.gotoResubmitApplication = function(){
+    $scope.gotoResubmitApplication = function () {
         $state.go('app.adminapplication.resubmissionapp');
     }
 

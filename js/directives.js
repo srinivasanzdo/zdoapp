@@ -11,6 +11,22 @@ angular
   .directive('tab', bootstrapTabsDirective)
   .directive('button', cardCollapseDirective)
   .directive('validateEmail', validateEmailDirective)
+  .directive('myEnter', myEnter)
+
+
+function myEnter() {
+  return function (scope, element, attrs) {
+    element.bind("keydown keypress", function (event) {
+      if (event.which === 13) {
+        scope.$apply(function () {
+          scope.$eval(attrs.myEnter);
+        });
+
+        event.preventDefault();
+      }
+    });
+  };
+}
 
 function validateEmailDirective() {
   var EMAIL_REGEXP = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
@@ -241,3 +257,6 @@ function cardCollapseDirective() {
     }
   }
 }
+
+
+

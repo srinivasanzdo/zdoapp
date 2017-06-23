@@ -4,29 +4,31 @@
     </div>
     <br/>
     <br/>
-    <table datatable="ng" class="row-border hover">
-        <thead>
-            <tr>
-                <!--<th>Options</th>-->
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Mobile</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="agent in agentList">
-                <!--<td>
+    <div class="overflowx">
+        <table datatable="ng" class="row-border hover">
+            <thead>
+                <tr>
+                    <!--<th>Options</th>-->
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="agent in agentList">
+                    <!--<td>
                     <button ng-click="editAgent(agent.id)" class="btn btn-sm btn-primary" type="button"><i class="fa fa-edit"></i></button> &nbsp;&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-ban"></i></button>
                 </td>-->
-                <td>{{ agent.name }}</td>
-                <td>{{ agent.gender }}</td>
-                <td>{{ agent.phone }}</td>
-                <td>{{ agent.email }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <br/>
-    <br/>
+                    <td>{{ agent.name }}</td>
+                    <td>{{ agent.gender }}</td>
+                    <td>{{ agent.phone }}</td>
+                    <td>{{ agent.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <br/>
+    </div>
 </div>

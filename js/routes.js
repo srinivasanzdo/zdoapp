@@ -4,7 +4,7 @@ angular
 
     //$urlRouterProvider.otherwise('/dashboard');
 
-    var authenticated = ['$q', 'AuthFactory', '$state', function ($q, AuthFactory, $state) {
+    var authenticated = ['$q', 'AuthFactory', '$state', 'HTTPService', function ($q, AuthFactory, $state, HTTPService) {
       var deferred = $q.defer();
       //console.log(AuthFactory.isLoggedIn());
       AuthFactory.isLoggedIn()
@@ -13,9 +13,13 @@ angular
             deferred.resolve();
           } else {
             deferred.reject('Not logged in');
-            defer.resolve(false);
+            HTTPService.logout();
             $state.go('appSimple.login');
           }
+        }, function (error) {
+          deferred.reject('Not logged in');
+          HTTPService.logout();
+          $state.go('appSimple.login');
         });
       return deferred.promise;
     }];
@@ -475,7 +479,7 @@ angular
           }]
         }
       })
-      
+
       .state('app.agentapplication.rejectapp', {
         url: '/rejectapplication',
         templateUrl: 'views/pages/agent/agentrejectapp.html',
@@ -505,6 +509,23 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/agent/agentdraftappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.agentapplication.editapplication', {
+        url: '/editapplication/:id/:type',
+        templateUrl: 'views/pages/agent/editapplication.html',
+        ncyBreadcrumb: {
+          label: 'Edit Application Details',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/agent/editapplicationController.js']
             });
           }]
         }
@@ -543,5 +564,7 @@ angular
           }]
         }
       })
+
+      
 
   }]);

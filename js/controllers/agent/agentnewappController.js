@@ -8,6 +8,8 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
 
     $scope.items = [];
 
+    $scope.showEmailForm = false;
+
     var x = new Date();
     var d = x.getDate();
     var m = x.getMonth() + 1;
@@ -35,6 +37,8 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
     };
 
     $scope.applicationEmail = function () {
+
+        $scope.showEmailForm = true;
 
     }
 
@@ -108,17 +112,30 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         })
     }
 
+    $scope.emailSubmit = function (customerEmail){
+        alert("Application form link sent to given email...");
+        $state.go("app.agentdashboard");
+    }
 
-    $scope.submit = function (application,statusid) {
+
+    $scope.submit = function (application, statusid) {
 
         if ($scope.document.length != 3) {
             alert("Upload all doucments...");
         } else {
             var validate = false;
+            var validate_val = false ; 
+
             if (application.preexisting_condition == "Yes" || application.high_blood_pressure == "Yes" || application.diabetes == "Yes" || application.high_cholesterol == "Yes") {
                 if (application.diagnosisdate) {
                     validate = true;
+                    validate_val = true ; 
                 }
+            }
+
+            if (application.preexisting_condition == "No" && application.high_blood_pressure == "No" && application.diabetes == "No" && application.high_cholesterol == "No") {
+                validate = true;
+                validate_val = false ;
             }
 
             if (!validate) {
@@ -140,7 +157,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
                     high_blood_pressure: application.high_blood_pressure,
                     diabetes: application.diabetes,
                     high_cholesterol: application.high_cholesterol,
-                    diagnosisdate: application.diagnosisdate,
+                    diagnosisdate: validate_val ? application.diagnosisdate : null,
                     pending_claims: application.pending_claims,
                     other_entitlement_policies: application.other_entitlement_policies,
                     cause_complaint: application.cause_complaint,
@@ -149,7 +166,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
                     status_id: statusid,
                     user_id: parseInt(localStorage.getItem('user_id')),
                     remark: application.remark ? application.remark : null,
-                    rejected: application.rejected ? application.rejected : null,
+                    rejected: "No",
                     amend_remark: application.amend_remark ? application.amend_remark : null,
                     reject_remark: application.reject_remark ? application.reject_remark : null,
                     photo: $scope.document

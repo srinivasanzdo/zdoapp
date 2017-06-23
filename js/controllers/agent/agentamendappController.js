@@ -26,4 +26,8 @@ function agentamendappCtrl($rootScope, $scope, $state, HTTPService) {
         $state.go('app.singleapplication',{id: aid});
     }
 
+    $scope.showApplicationEdit = function (aid) {
+        $state.go('app.agentapplication.editapplication', { id: aid, type:'amend' });
+    }
+
 }
