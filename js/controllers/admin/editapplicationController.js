@@ -181,7 +181,7 @@ function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stat
             HTTPService.updateApplication($scope.applicationParams, $scope.application.id).then(function (res) {
                 if (res.data.status == 1) {
                     alert(res.data.message);
-                    $state.go("app.agentdashboard");
+                    $state.go("app.admindashboard");
                 }
             }, function (err) {
                 console.log(err);

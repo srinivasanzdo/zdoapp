@@ -9,7 +9,7 @@
     <br/>
     <br/>
 
-    <div ng-show = "showEmailForm">
+    <div ng-show="showEmailForm">
         <form name="emailForm">
 
             <div class="form-group row">
@@ -104,8 +104,8 @@
 
                                 <div class="form-group">
                                     <label for="appcontact_nok">Contact of NOK <span class="form-label-warning">*</span> </label>
-                                    <input class="form-control" type='text' ng-pattern="/^[0-9]+$/" name='appcontact_nok' ng-model='application.contact_nok' placeholder="Enter Contact of NOK.."
-                                        required minlength="8" maxlength="8">
+                                    <input class="form-control" type='text' ng-pattern="/^[0-9]+$/" name='appcontact_nok' ng-model='application.contact_nok'
+                                        placeholder="Enter Contact of NOK.." required minlength="8" maxlength="8">
                                     <span class="form-label-warning" ng-show="appForm.appcontact_nok.$touched && appForm.appcontact_nok.$error.required">The contact NOK is required.</span>
                                     <span class="form-label-warning" ng-show="appForm.appcontact_nok.$error.maxlength || appForm.appcontact_nok.$error.minlength || appForm.appcontact_nok.$error.pattern">The contact NOK is invalid.</span>
                                 </div>
@@ -282,29 +282,27 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">NRIC FRONT <span class="form-label-warning">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input1" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_front')">
+                                        <input class="applicationDoc" type="file" id="nric_front" data-dtype="nric_front" data-dpath="" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">NRIC BACK <span class="form-label-warning">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_back')">
+                                        <input class="applicationDoc" type="file" id="nric_back" data-dtype="nric_back" data-dpath="" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">DOCUMENT <span class="form-label-warning">*</span> </label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'document')">
+                                        <input class="applicationDoc" type="file" id="document" data-dtype="document" data-dpath="" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">
                                     </div>
                                 </div>
 
-                                <!--<button ng-click="addNode()" class="btn btn-sm btn-success">Upload New Document</button>
-                                <br/><br/>-->
                                 <div ng-repeat="item in items">
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label" for="file-input">DOCUMENT {{item.length}} </label>
                                         <div class="col-md-9">
-                                            <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, '{{item.name}}')">
+                                            <input class="applicationDoc" type="file" id="{{item.name}}" data-dtype="{{item.name}}" data-dpath="" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">
                                         </div>
                                     </div>
                                 </div>
@@ -317,15 +315,24 @@
         </div>
         <br/>
 
-        <div>
-            <center>
-                <button ng-click="submit(application,3)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Draft Application </button>                &nbsp;&nbsp;&nbsp;
-                <button ng-click="submit(application,1)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Submit Application </button>
-            </center>
-        </div>
 
-        <br/>
-        <br/>
 
     </form>
+    
+    <div>
+        <center>
+
+            <button ng-click="addNode($event)" class="btn btn-sm btn-success">Upload New Document</button>
+            <br/>
+            <br/>
+            <button ng-click="submit(application,3)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Draft Application </button>            &nbsp;&nbsp;&nbsp;
+            <button ng-click="submit(application,1)"  type="button" class="btn btn-success"> Submit Application </button>
+        </center>
+    </div>
+
+    <br/>
+    <br/>
+
+    
+
 </div>

@@ -25,7 +25,8 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
 
     console.log($scope.today)
 
-    $scope.addNode = function () {
+    $scope.addNode = function (event) {
+        event.stopPropagation();
         if ($scope.items.length < 5) {
             var len = $scope.items.length + 1;
             $scope.items.push({
@@ -64,39 +65,30 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         }
     }
 
-    $scope.document = []
 
-    $scope.uploadImage = function (files, doctype) {
+
+    $scope.uploadImage = function (files, event) {
         $scope.Files = files;
 
         var xy = files[0].type.split('/');
+        if (files && files.length > 0) {
+            if (xy[1] == "jpg" || xy[1] == "jpeg" || xy[1] == "JPG" || xy[1] == "JPEG" || xy[1] == "png" || xy[1] == "PNG") {
 
-        if (xy[1] == "jpg" || xy[1] == "jpeg" || xy[1] == "JPG" || xy[1] == "JPEG" || xy[1] == "png" || xy[1] == "PNG") {
-            if (files && files.length > 0) {
-                $scope.docnode = {
-                    type: '',
-                    path: ''
-                }
+
                 angular.forEach($scope.Files, function (file, key) {
                     S3UploadService.Upload(file).then(function (result) {
-                        // Mark as success
-                        //file.Success = true;
-
-                        $scope.docnode.type = doctype;
-                        $scope.docnode.path = result.key;
-                        $scope.document.push($scope.docnode);
-
+                        $("#" + event.target.id).attr("data-dpath", result.key);
                     }, function (error) {
-                        // Mark the error
                         $scope.Error = error;
                     }, function (progress) {
                         // Write the progress as a percentage
                         //file.Progress = (progress.loaded / progress.total) * 100
                     });
                 });
+            } else {
+                $("#" + event.target.id).val('');
+                alert("upload only JPEG and PNG images...");
             }
-        } else {
-            alert("upload only JPEG and PNG images...");
         }
 
     }
@@ -112,7 +104,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         })
     }
 
-    $scope.emailSubmit = function (customerEmail){
+    $scope.emailSubmit = function (customerEmail) {
         alert("Application form link sent to given email...");
         $state.go("app.agentdashboard");
     }
@@ -120,22 +112,38 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
 
     $scope.submit = function (application, statusid) {
 
-        if ($scope.document.length != 3) {
-            alert("Upload all doucments...");
+        if ($("#nric_front").attr("data-dpath") == "" || $("#nric_back").attr("data-dpath") == "" || $("#document").attr("data-dpath") == "") {
+            alert("Upload all required doucments...");
         } else {
+            $scope.document = [];
+            $(".applicationDoc").each(function () {
+                var docnode = {
+                    type:'',
+                    path:''
+                }
+                if($(this).attr("data-dpath")!="" && $(this).attr("data-dpath")){
+                    docnode.type = $(this).attr("data-dtype");
+                    docnode.path = $(this).attr("data-dpath");
+
+                    $scope.document.push(docnode);
+                }                
+            });
+
+            console.log($scope.document);
+
             var validate = false;
-            var validate_val = false ; 
+            var validate_val = false;
 
             if (application.preexisting_condition == "Yes" || application.high_blood_pressure == "Yes" || application.diabetes == "Yes" || application.high_cholesterol == "Yes") {
                 if (application.diagnosisdate) {
                     validate = true;
-                    validate_val = true ; 
+                    validate_val = true;
                 }
             }
 
             if (application.preexisting_condition == "No" && application.high_blood_pressure == "No" && application.diabetes == "No" && application.high_cholesterol == "No") {
                 validate = true;
-                validate_val = false ;
+                validate_val = false;
             }
 
             if (!validate) {
