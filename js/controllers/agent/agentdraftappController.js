@@ -5,6 +5,9 @@ angular
 agentdraftappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentdraftappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentDraftAppList() {
         HTTPService.getAgentDraftApp(localStorage.getItem('user_id')).then(function (res) {

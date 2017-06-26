@@ -5,6 +5,9 @@ angular
 adminrejectappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminrejectappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadRejectAppList() {
         HTTPService.getRejectedApp().then(function (res) {

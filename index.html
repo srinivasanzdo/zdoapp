@@ -17,7 +17,9 @@
     <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="css/angular-datatables.css" rel="stylesheet">
     <link href="css/jquery-confirm.min.css" rel="stylesheet" />
-    <link href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" rel="stylesheet" />
+    <link href="css/angular-datepicker.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/rowreorder/1.2.0/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" />
     <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
 
 </head>
@@ -50,7 +52,8 @@
     <ui-view></ui-view>
 
     <script type="text/javascript">
-        window.domainURL = "http://localhost/zdoapp/public/api/";
+        //window.domainURL = "http://localhost/zdoapp/public/api/";
+        window.domainURL = "http://zdoapp.mycartechnologies.com/public/api/";
     </script>
 
     <!-- Bootstrap and necessary plugins -->
@@ -59,6 +62,8 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
 
     <!-- AngularJS -->
     <script src="bower_components/angular/angular.min.js"></script>

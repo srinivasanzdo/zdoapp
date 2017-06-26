@@ -4,7 +4,10 @@ angular
 
 adminamendappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminamendappCtrl($rootScope, $scope, $state, HTTPService) {
-
+    
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAmendAppList() {
         HTTPService.getAmendApp().then(function (res) {
@@ -24,6 +27,10 @@ function adminamendappCtrl($rootScope, $scope, $state, HTTPService) {
 
     $scope.showApplication = function (aid) {
         $state.go('app.singleapplication', { id: aid });
+    }
+
+    $scope.showApplicationEdit = function (aid) {
+        $state.go('app.adminapplication.editapplication', { id: aid, type: 'amend' });
     }
 
 }

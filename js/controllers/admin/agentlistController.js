@@ -5,6 +5,9 @@ angular
 agentlistCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentlistCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentList() {
         HTTPService.getAgentList().then(function (res) {

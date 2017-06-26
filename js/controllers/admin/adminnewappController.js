@@ -4,7 +4,10 @@ angular
 
 adminnewappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminnewappCtrl($rootScope, $scope, $state, HTTPService) {
-
+    
+    $scope.options = {
+        responsive: true
+    }
 
     function loadNewAppList() {
         HTTPService.getPendingApp().then(function (res) {

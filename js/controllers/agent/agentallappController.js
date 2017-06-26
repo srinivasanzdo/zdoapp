@@ -5,6 +5,10 @@ angular
 agentallappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentallappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive : true
+    }
+
 
     function loadAgentAllAppList() {
         HTTPService.getAgentAllApp(localStorage.getItem('user_id')).then(function (res) {

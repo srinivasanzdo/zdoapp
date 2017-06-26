@@ -5,6 +5,9 @@ angular
 adminresubmissionappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminresubmissionappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadResubmitAppList() {
         HTTPService.getResubmitApp().then(function (res) {

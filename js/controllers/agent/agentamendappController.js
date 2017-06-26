@@ -5,6 +5,9 @@ angular
 agentamendappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentamendappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentAmendAppList() {
         HTTPService.getAgentAmendApp(localStorage.getItem('user_id')).then(function (res) {

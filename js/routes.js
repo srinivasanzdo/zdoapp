@@ -55,6 +55,12 @@ angular
       })
 
       // Additional Pages
+      .state('appSimple.testpage', {
+        url: '/testpage/:id/:type',
+        templateUrl: 'views/pages/test.html'
+      })
+
+      // Additional Pages
       .state('appSimple.login', {
         url: '/login',
         templateUrl: 'views/pages/login.html',
@@ -301,6 +307,23 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/admin/adminresubmissionappController.js']
+            });
+          }]
+        }
+      })
+
+      .state('app.adminapplication.editapplication', {
+        url: '/editapplication/:id/:type',
+        templateUrl: 'views/pages/admin/editapplication.html',
+        ncyBreadcrumb: {
+          label: 'Edit Application Details',
+        },
+        resolve: {
+          authenticated: authenticated,
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/admin/editapplicationController.js']
             });
           }]
         }

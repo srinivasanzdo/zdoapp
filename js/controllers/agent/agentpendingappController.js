@@ -5,6 +5,9 @@ angular
 agentpendingappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentpendingappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentPendingAppList() {
         HTTPService.getAgentPendingApp(localStorage.getItem('user_id')).then(function (res) {

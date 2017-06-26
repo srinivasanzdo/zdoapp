@@ -5,6 +5,9 @@ angular
 agentapproveappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentapproveappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentApproveAppList() {
         HTTPService.getAgentApprovedApp(localStorage.getItem('user_id')).then(function (res) {

@@ -2,8 +2,10 @@ angular
     .module('app')
     .controller('admindashboardCtrl', admindashboardCtrl);
 
-admindashboardCtrl.$inject = ['$rootScope', '$scope', '$state', 'AuthFactory', 'HTTPService'];
-function admindashboardCtrl($rootScope, $scope, $state, AuthFactory, HTTPService) {
+admindashboardCtrl.$inject = ['$rootScope', '$scope', '$state', 'AuthFactory', 'HTTPService', '$location'];
+function admindashboardCtrl($rootScope, $scope, $state, AuthFactory, HTTPService, $location) {
+
+    //alert($location.absUrl());
 
     $scope.all = 0;
     $scope.new = 0;

@@ -4,8 +4,11 @@ angular
 
 adminallappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminallappCtrl($rootScope, $scope, $state, HTTPService) {
-
-
+    
+    $scope.options = {
+        responsive: true
+    }
+    
     function loadAllAppList() {
         HTTPService.getAllApp().then(function (res) {
             $scope.appList = res.data;

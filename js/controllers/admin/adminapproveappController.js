@@ -5,6 +5,9 @@ angular
 adminapproveappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function adminapproveappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive : true
+    }
 
     function loadApproveAppList() {
         HTTPService.getApprovedApp().then(function (res) {

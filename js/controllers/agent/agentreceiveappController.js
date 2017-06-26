@@ -5,6 +5,9 @@ angular
 agentreceiveappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentreceiveappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentReceiveAppList() {
         HTTPService.getAgentReceivedApp(localStorage.getItem('user_id')).then(function (res) {

@@ -16,7 +16,7 @@ function agentdashboardCtrl($rootScope, $scope, $state, AuthFactory, HTTPService
     HTTPService.getUserAllAppCount(localStorage.getItem('user_id')).then(function (res) {
         //console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
-            $scope.all = $scope.all + res.data[i].total;
+            $scope.all = $scope.all + parseInt(res.data[i].total);
             if (res.data[i].status_id == 1) {
                 $scope.pending = res.data[i].total;
             } else if (res.data[i].status_id == 2) {

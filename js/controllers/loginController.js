@@ -2,8 +2,8 @@ angular
     .module('app')
     .controller('loginCtrl', loginCtrl);
 
-loginCtrl.$inject = ['$scope', '$state', 'HTTPService'];
-function loginCtrl($scope, $state, HTTPService) {
+loginCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location'];
+function loginCtrl($scope, $state, HTTPService, $location) {
     $scope.loginFunction = function (params) {
         var param = {
             email: params.username,

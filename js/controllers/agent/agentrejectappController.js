@@ -5,6 +5,9 @@ angular
 agentrejectappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService'];
 function agentrejectappCtrl($rootScope, $scope, $state, HTTPService) {
 
+    $scope.options = {
+        responsive: true
+    }
 
     function loadAgentRejectAppList() {
         HTTPService.getAgentRejectedApp(localStorage.getItem('user_id')).then(function (res) {
