@@ -115,22 +115,6 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         if ($("#nric_front").attr("data-dpath") == "" || $("#nric_back").attr("data-dpath") == "" || $("#document").attr("data-dpath") == "") {
             alert("Upload all required doucments...");
         } else {
-            $scope.document = [];
-            $(".applicationDoc").each(function () {
-                var docnode = {
-                    type:'',
-                    path:''
-                }
-                if($(this).attr("data-dpath")!="" && $(this).attr("data-dpath")){
-                    docnode.type = $(this).attr("data-dtype");
-                    docnode.path = $(this).attr("data-dpath");
-
-                    $scope.document.push(docnode);
-                }                
-            });
-
-            console.log($scope.document);
-
             var validate = false;
             var validate_val = false;
 
@@ -149,6 +133,22 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
             if (!validate) {
                 alert("Enter Diagnosis date..");
             } else {
+
+                $scope.document = [];
+                $(".applicationDoc").each(function () {
+                    var docnode = {
+                        type: '',
+                        path: ''
+                    }
+                    if ($(this).attr("data-dpath") != "" && $(this).attr("data-dpath")) {
+                        docnode.type = $(this).attr("data-dtype");
+                        docnode.path = $(this).attr("data-dpath");
+
+                        $scope.document.push(docnode);
+                    }
+                });
+
+                console.log($scope.document);
 
                 $scope.applicationParams = {
                     name: application.name,

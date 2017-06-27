@@ -5,16 +5,13 @@ angular
 admineditapplicationCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService', '$stateParams', 'S3UploadService'];
 function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stateParams, S3UploadService) {
 
-
-    $scope.items = [];
-
     $scope.isAmend = false;
     $scope.isReject = false;
 
-    if($stateParams.type=="amend"){
+    if ($stateParams.type == "amend") {
         $scope.isAmend = true;
     }
-    if($stateParams.type=="reject"){
+    if ($stateParams.type == "reject") {
         $scope.isReject = true;
     }
 
@@ -31,38 +28,16 @@ function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stat
 
     var yest = d - 1;
 
+    $scope.olddoc = []
+
     $scope.today = y + "-" + m + "-" + d;
     $scope.yesterday = y + "-" + m + "-" + yest;
-
-    $scope.addNode = function () {
-        if ($scope.items.length < 5) {
-            var len = $scope.items.length + 1;
-            $scope.items.push({
-                length: len,
-                name: 'document' + len
-            });
-        }
-
-    };
-
-
-    $scope.document = [];
 
     $scope.application = {};
     HTTPService.getSingleApplication($stateParams.id).then(function (res) {
         $scope.application = res.data;
-
         for (var i = 0; i < res.data.image.length; i++) {
-            if (res.data.image[i].type == "nric_front") {
-                $scope.nric_front = res.data.image[i].path;
-            }
-            if (res.data.image[i].type == "nric_back") {
-                $scope.nric_back = res.data.image[i].path;
-            }
-            if (res.data.image[i].type == "document") {
-                $scope.documents = res.data.image[i].path;
-            }
-
+            $scope.olddoc[res.data.image[i].type] = res.data.image[i].path;
         }
 
     }, function (err) {
@@ -73,38 +48,44 @@ function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stat
         }
     });
 
-    $scope.uploadImage = function (files, doctype) {
+    $scope.uploadImage = function (files, event) {
         $scope.Files = files;
 
-        var xy = files[0].type.split('/');
+        // if ($("#" + event.target.id).attr("data-dpath") && $("#" + event.target.id).attr("data-dpath") != "") {
 
-        if (xy[1] == "jpg" || xy[1] == "jpeg" || xy[1] == "JPG" || xy[1] == "JPEG" || xy[1] == "png" || xy[1] == "PNG") {
+        // }
+
+        if (files.length != 0) {
+            var xy = files[0].type.split('/');
+
             if (files && files.length > 0) {
-                $scope.docnode = {
-                    type: '',
-                    path: ''
-                }
-                angular.forEach($scope.Files, function (file, key) {
-                    S3UploadService.Upload(file).then(function (result) {
-                        // Mark as success
-                        //file.Success = true;
+                if (xy[1] == "jpg" || xy[1] == "jpeg" || xy[1] == "JPG" || xy[1] == "JPEG" || xy[1] == "png" || xy[1] == "PNG") {
 
-                        $scope.docnode.type = doctype;
-                        $scope.docnode.path = result.key;
-                        $scope.document.push($scope.docnode);
 
-                    }, function (error) {
-                        // Mark the error
-                        $scope.Error = error;
-                    }, function (progress) {
-                        // Write the progress as a percentage
-                        //file.Progress = (progress.loaded / progress.total) * 100
+                    angular.forEach($scope.Files, function (file, key) {
+                        S3UploadService.Upload(file).then(function (result) {
+                            $("#" + event.target.id).attr("data-dpath", result.key);
+                        }, function (error) {
+                            $scope.Error = error;
+                        }, function (progress) {
+                            // Write the progress as a percentage
+                            //file.Progress = (progress.loaded / progress.total) * 100
+                        });
                     });
-                });
+                } else {
+                    $("#" + event.target.id).val('');
+                    alert("upload only JPEG and PNG images...");
+                }
             }
+
         } else {
-            alert("upload only JPEG and PNG images...");
+            if (files.length == 0) {
+                var xxx = $scope.olddoc[$("#" + event.target.id).attr("data-dtype")];
+                $("#" + event.target.id).attr("data-dpath", xxx);
+            }
         }
+
+
 
     }
 
@@ -149,6 +130,21 @@ function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stat
                 rejected = "Yes";
             }
 
+            $scope.document = [];
+            $(".applicationDoc").each(function () {
+                var docnode = {
+                    id: '',
+                    type: '',
+                    path: ''
+                }
+                if ($(this).attr("data-dpath") != "" && $(this).attr("data-dpath")) {
+                    docnode.id = $(this).attr("data-did");
+                    docnode.type = $(this).attr("data-dtype");
+                    docnode.path = $(this).attr("data-dpath");
+
+                    $scope.document.push(docnode);
+                }
+            });
 
             $scope.applicationParams = {
                 name: application.name,
@@ -173,10 +169,11 @@ function admineditapplicationCtrl($rootScope, $scope, $state, HTTPService, $stat
                 preffereddate: application.preffereddate,
                 status_id: 1,
                 remark: application.remark ? application.remark : null,
-                rejected: rejected
+                rejected: rejected,
+                photo: $scope.document
             }
 
-            //console.log($scope.applicationParams);
+            console.log($scope.applicationParams);
 
             HTTPService.updateApplication($scope.applicationParams, $scope.application.id).then(function (res) {
                 if (res.data.status == 1) {

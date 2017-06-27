@@ -9,6 +9,17 @@ function applicationCtrl($rootScope, $scope, $state, HTTPService) {
     $scope.userShowName = localStorage.getItem('user_show_name');
 
     $scope.logoutFunciton = function () {
-        HTTPService.logout();
+        var r = confirm("Do you want logout the application ?");
+        if (r)
+            HTTPService.logout();
     }
+
+    // window.onbeforeunload = function () {
+    //     myfun();
+    //     return 'Are you sure you want to leave?';
+    // };
+
+    // function myfun(){
+    //     alert("leave.....");
+    // }
 }

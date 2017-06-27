@@ -4,6 +4,10 @@ angular
 
 loginCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location'];
 function loginCtrl($scope, $state, HTTPService, $location) {
+    $scope.login = {
+        username: '',
+        password: ''
+    }
     $scope.loginFunction = function (params) {
         var param = {
             email: params.username,
@@ -26,6 +30,10 @@ function loginCtrl($scope, $state, HTTPService, $location) {
 
         }, function (err) {
             console.log("login error----", err);
+            $scope.login = {
+                username: '',
+                password: ''
+            }
             alert("Invalid credentials");
         });
     }

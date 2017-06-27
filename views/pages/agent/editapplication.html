@@ -247,7 +247,7 @@
                                 </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-show="application.high_cholesterol  =='Yes' || application.diabetes =='Yes' || application.high_blood_pressure=='Yes' || application.preexisting_condition == 'Yes'  ">
                                     <label for="appdiagnosisdate">Any of the above is Yes, date of diagnosis</label>
                                     <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}">
                                         <input ng-model="application.diagnosisdate" type="text" class="form-control" name="appdiagnosisdate" readonly />
@@ -276,39 +276,14 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="file-input">NRIC FRONT <span class="form-label-warning">*</span></label>
+                                <div class="form-group row" ng-repeat="item in application.image">
+                                    <label class="col-md-3 form-control-label" for="file-input">{{item.type}}<span class="form-label-warning">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="file" id="file-input1" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_front')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button ng-click="getImagebyName(nric_front)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
+                                        <input class="applicationDoc" type="file" id="{{item.type}}" data-dtype="{{item.type}}" data-did="{{item.id}}" data-dpath="{{item.path}}" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button ng-click="getImagebyName(item.path)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="file-input">NRIC BACK <span class="form-label-warning">*</span></label>
-                                    <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'nric_back')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button ng-click="getImagebyName(nric_back)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="file-input">DOCUMENT <span class="form-label-warning">*</span> </label>
-                                    <div class="col-md-9">
-                                        <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, 'document')">                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button ng-click="getImagebyName(documents)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
-                                    </div>
-                                </div>
-
-                                <!--<button ng-click="addNode()" class="btn btn-sm btn-success">Upload New Document</button>
-                                <br/><br/>-->
-                                <div ng-repeat="item in items">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 form-control-label" for="file-input">DOCUMENT {{item.length}} </label>
-                                        <div class="col-md-9">
-                                            <input type="file" id="file-input" name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, '{{item.name}}')">
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

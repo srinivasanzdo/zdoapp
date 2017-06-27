@@ -28,10 +28,10 @@
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="agentphone">Mobile <span class="form-label-warning">*</span> </label>
                         <div class="col-md-9">
-                            <input class="form-control" type='number' name='agentphone' ng-model='agent.phone' placeholder="Enter Mobile number.." required
+                            <input class="form-control" type='text' ng-pattern="/^[0-9]+$/" name='agentphone' ng-model='agent.phone' placeholder="Enter Mobile number.." required
                                 minlength="8" maxlength="8">
                             <span class="form-label-warning" ng-show="agentForm.agentphone.$touched && agentForm.agentphone.$error.required">The mobile number is required.</span>
-                            <span class="form-label-warning" ng-show="agentForm.agentphone.$error.maxlength || agentForm.agentphone.$error.minlength">The mobile is invalid.</span>
+                            <span class="form-label-warning" ng-show="agentForm.agentphone.$error.maxlength || agentForm.agentphone.$error.minlength || agentForm.agentphone.$error.pattern">The mobile is invalid.</span>
                         </div>
                     </div>
 
