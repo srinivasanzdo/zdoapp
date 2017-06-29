@@ -1,10 +1,19 @@
 <div class="animated fadeIn" ng-init="application.gender='Male'" ng-controller="agentnewappCtrl">
 
-    <div>
-        <center>
-            <button type="button" class="btn btn-success" ng-click="applicationEmail()"> Application share via EMAIL </button>            &nbsp; &nbsp; &nbsp; &nbsp;
-            <button ng-show="isMobile" type="button" class="btn btn-success" ng-click="applicationWhatsapp()"> Application share via WHATSAPP </button>
-        </center>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <button type="button" class="btn btn-success" ng-click="applicationEmail()"> Application share via EMAIL </button>
+            </center>
+        </div>
+    </div>
+    <br/>
+    <div class="row" ng-show="isMobile">
+        <div class="col-md-12">
+            <center>
+                <button type="button" class="btn btn-success" ng-click="applicationWhatsapp()"> Application share via WHATSAPP </button>
+            </center>
+        </div>
     </div>
     <br/>
     <br/>
@@ -318,7 +327,7 @@
 
 
     </form>
-    
+
     <div>
         <center>
 
@@ -333,6 +342,6 @@
     <br/>
     <br/>
 
-    
+
 
 </div>

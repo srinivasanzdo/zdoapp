@@ -94,7 +94,7 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
             S3UploadService.getImageBase64URL(imagepath).then(function (res) {
                 if (res) {
                     $scope.s3url = "data:image/jpeg;base64," + res;
-                    console.log($scope.s3url);
+                    //console.log($scope.s3url);
                     window.open($scope.s3url, '_blank');
                 }
             });

@@ -61,6 +61,20 @@ angular
       })
 
       // Additional Pages
+      .state('appSimple.applicationform', {
+        url: '/applicationform/:id/:key',
+        templateUrl: 'views/pages/applicationform.html',
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/applicationformController.js']
+            });
+          }]
+        }
+      })
+
+      // Additional Pages
       .state('appSimple.login', {
         url: '/login',
         templateUrl: 'views/pages/login.html',

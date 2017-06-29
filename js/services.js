@@ -50,6 +50,66 @@ angular
             });
         }
 
+        this.getUserWithoutToken = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "userwithouttoken/" + id,
+
+            });
+        }
+
+        this.getLinkWithoutToken = function (li) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "linkDetail/" + li,
+
+            });
+        }
+
+        this.updateLinkWithoutToken = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "linkUpdate",
+                data: params
+
+            });
+        }
+
+        this.sendEmailLink = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "sendEmailLink",
+                data: params
+
+            });
+        }
+
+        this.sendWhatsappLink = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "sendWhatsappLink",
+                data: params
+
+            });
+        }
+
         this.getAgentList = function () {
             return $http({
                 method: "get",
@@ -276,6 +336,17 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "application",
+                data: params
+
+            });
+        }
+        this.addApplicationWithoutToken = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "applicationSubmit",
                 data: params
 
             });

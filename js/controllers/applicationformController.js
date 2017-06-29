@@ -1,14 +1,49 @@
 angular
     .module('app')
-    .controller('agentnewappCtrl', agentnewappCtrl);
+    .controller('applicationformCtrl', applicationformCtrl);
 
-agentnewappCtrl.$inject = ['$rootScope', '$scope', '$state', 'HTTPService', 'S3UploadService'];
-function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadService) {
+applicationformCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location', '$stateParams'];
+function applicationformCtrl($scope, $state, HTTPService, $location, $stateParams) {
+    console.log($stateParams.id);
+    console.log($stateParams.key);
 
+    $scope.agentForm = false;
+    $scope.applicationForm = false;
+
+
+
+    HTTPService.getUserWithoutToken($stateParams.id).then(function (res) {
+        $scope.agent = res.data;
+    }, function (err) {
+        console.log(err);
+    });
+
+    HTTPService.getLinkWithoutToken($stateParams.key).then(function (res) {
+        if (res.data) {
+            if (res.data.status == 'open') {
+                $scope.agentForm = false;
+                $scope.applicationForm = true;
+            } else if (res.data.status == 'close') {
+                alert("your application link is expired. contact your agent...");
+                $scope.agentForm = true;
+                $scope.applicationForm = false;
+            } else {
+                alert("your application link is expired. contact your agent...");
+                $scope.agentForm = true;
+                $scope.applicationForm = false;
+            }
+
+        } else {
+            $scope.agentForm = true;
+            $scope.applicationForm = false;
+        }
+    }, function (err) {
+        console.log(err);
+        $scope.agentForm = true;
+        $scope.applicationForm = false;
+    });
 
     $scope.items = [];
-
-    $scope.showEmailForm = false;
 
     var x = new Date();
     var d = x.getDate();
@@ -23,7 +58,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
     $scope.today = y + "-" + m + "-" + d;
     $scope.yesterday = y + "-" + m + "-" + yest;
 
-    console.log($scope.today)
+    //console.log($scope.today)
 
     $scope.addNode = function (event) {
         event.stopPropagation();
@@ -36,59 +71,6 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         }
 
     };
-
-    $scope.applicationEmail = function () {
-
-        $scope.showEmailForm = true;
-
-    }
-
-    $scope.applicationWhatsapp = function () {
-
-        var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
-        var linkurl = baseurl + "applicationform/" + localStorage.getItem('user_id') + "/" + makeid();
-
-        $scope.linkParamWhatsapp = {
-            link: makeid(),
-            user_id: localStorage.getItem('user_id'),
-            status: 'open'
-        }
-
-        HTTPService.sendWhatsappLink($scope.linkParamWhatsapp).then(function (res) {
-            if (res.data.status == 1) {
-                // alert(res.data.message);
-                // $state.go("app.agentdashboard");
-                window.location = "whatsapp://send?text=" + linkurl;
-            }
-        }, function (err) {
-            console.log(err);
-            if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
-                HTTPService.logout();
-                alert("Session Expired...");
-            }
-        });
-
-    }
-
-    $scope.isMobile = detectmob();
-
-    function detectmob() {
-        if (navigator.userAgent.match(/Android/i)
-            || navigator.userAgent.match(/webOS/i)
-            || navigator.userAgent.match(/iPhone/i)
-            || navigator.userAgent.match(/iPad/i)
-            || navigator.userAgent.match(/iPod/i)
-            || navigator.userAgent.match(/BlackBerry/i)
-            || navigator.userAgent.match(/Windows Phone/i)
-        ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-
 
     $scope.uploadImage = function (files, event) {
         $scope.Files = files;
@@ -115,57 +97,6 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         }
 
     }
-
-    $scope.getImagebyName = function () {
-        var image = "ZLLWBFgz-20160124_164959.jpg"
-        S3UploadService.getImageBase64URL(image).then(function (res) {
-            if (res) {
-                $scope.show = true;
-                $scope.s3url = "data:image/jpeg;base64," + res;
-                //console.log($scope.s3url);
-            }
-        })
-    }
-
-    $scope.emailSubmit = function (customerEmail) {
-        var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
-        var uniqueid = makeid();
-        var linkurl = baseurl + "applicationform/" + localStorage.getItem('user_id') + "/" + uniqueid;
-
-        $scope.linkParam = {
-            link: uniqueid,
-            user_id: localStorage.getItem('user_id'),
-            status: 'open',
-            email: customerEmail,
-            full_link: linkurl
-        }
-
-        HTTPService.sendEmailLink($scope.linkParam).then(function (res) {
-            if (res.data.status == 1) {
-                alert(res.data.message);
-                $state.go("app.agentdashboard");
-            }
-        }, function (err) {
-            console.log(err);
-            if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
-                HTTPService.logout();
-                alert("Session Expired...");
-            }
-        });
-
-    }
-
-    function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < 25; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
-    }
-
-
 
 
     $scope.submit = function (application, statusid) {
@@ -206,7 +137,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
                     }
                 });
 
-                console.log($scope.document);
+                //console.log($scope.document);
 
                 $scope.applicationParams = {
                     name: application.name,
@@ -230,7 +161,7 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
                     signs_symptoms: application.signs_symptoms,
                     preffereddate: application.preffereddate,
                     status_id: statusid,
-                    user_id: parseInt(localStorage.getItem('user_id')),
+                    user_id: $stateParams.id,
                     remark: application.remark ? application.remark : null,
                     rejected: "No",
                     amend_remark: application.amend_remark ? application.amend_remark : null,
@@ -241,17 +172,29 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
 
                 //console.log($scope.applicationParams);
 
-                HTTPService.addApplication($scope.applicationParams).then(function (res) {
+                HTTPService.addApplicationWithoutToken($scope.applicationParams).then(function (res) {
                     if (res.data.status == 1) {
-                        alert(res.data.message);
-                        $state.go("app.agentdashboard");
+
+                        $scope.abc = res.data.message;
+                        $scope.liParam = {
+                            linnk : $stateParams.key
+                        }
+                        HTTPService.addApplicationWithoutToken($scope.liParam).then(function (res) {
+                            alert($scope.abc);
+                            $scope.agentForm = true;
+                            $scope.applicationForm = false;
+                        }, function (err) {
+                            alert($scope.abc);
+                            $scope.agentForm = true;
+                            $scope.applicationForm = false;
+                        });
+
                     }
                 }, function (err) {
                     console.log(err);
-                    if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
-                        HTTPService.logout();
-                        alert("Session Expired...");
-                    }
+                    alert("Error in application submission. Conatact your agent....");
+                    $scope.agentForm = true;
+                    $scope.applicationForm = true;
                 });
 
             }
@@ -259,5 +202,4 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
         }
 
     }
-
 }
