@@ -46,10 +46,11 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
     $scope.applicationWhatsapp = function () {
 
         var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
-        var linkurl = baseurl + "applicationform/" + localStorage.getItem('user_id') + "/" + makeid();
+        var uniquewhatsapp = makeid();
+        var linkurl = encodeURIComponent(baseurl) + "applicationform/" + localStorage.getItem('user_id') + "/" + uniquewhatsapp;
 
         $scope.linkParamWhatsapp = {
-            link: makeid(),
+            link: uniquewhatsapp,
             user_id: localStorage.getItem('user_id'),
             status: 'open'
         }
@@ -128,30 +129,35 @@ function agentnewappCtrl($rootScope, $scope, $state, HTTPService, S3UploadServic
     }
 
     $scope.emailSubmit = function (customerEmail) {
-        var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
-        var uniqueid = makeid();
-        var linkurl = baseurl + "applicationform/" + localStorage.getItem('user_id') + "/" + uniqueid;
+        if ($("#customeremail").hasClass('form-validate-warning')) {
+            alert("Please enter valid email id..");
+        } else {
 
-        $scope.linkParam = {
-            link: uniqueid,
-            user_id: localStorage.getItem('user_id'),
-            status: 'open',
-            email: customerEmail,
-            full_link: linkurl
+            var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
+            var uniqueid = makeid();
+            var linkurl = baseurl + "applicationform/" + localStorage.getItem('user_id') + "/" + uniqueid;
+
+            $scope.linkParam = {
+                link: uniqueid,
+                user_id: localStorage.getItem('user_id'),
+                status: 'open',
+                email: customerEmail,
+                full_link: linkurl
+            }
+
+            HTTPService.sendEmailLink($scope.linkParam).then(function (res) {
+                if (res.data.status == 1) {
+                    alert(res.data.message);
+                    $state.go("app.agentdashboard");
+                }
+            }, function (err) {
+                console.log(err);
+                if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+                    HTTPService.logout();
+                    alert("Session Expired...");
+                }
+            });
         }
-
-        HTTPService.sendEmailLink($scope.linkParam).then(function (res) {
-            if (res.data.status == 1) {
-                alert(res.data.message);
-                $state.go("app.agentdashboard");
-            }
-        }, function (err) {
-            console.log(err);
-            if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
-                HTTPService.logout();
-                alert("Session Expired...");
-            }
-        });
 
     }
 

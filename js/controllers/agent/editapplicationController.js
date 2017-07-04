@@ -7,6 +7,8 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
 
     $scope.isAmend = false;
     $scope.isReject = false;
+    $scope.isResendLink = false;
+    $scope.showResendButton = false;
 
     if ($stateParams.type == "amend") {
         $scope.isAmend = true;
@@ -15,6 +17,9 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
         $scope.isReject = true;
     }
 
+    if ($stateParams.type == "receive") {
+        $scope.isResendLink = true;
+    }
 
 
 
@@ -32,6 +37,107 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
 
     $scope.today = y + "-" + m + "-" + d;
     $scope.yesterday = y + "-" + m + "-" + yest;
+
+    $scope.applicationEmail = function () {
+
+        $scope.showEmailForm = true;
+
+    }
+
+    $scope.applicationWhatsapp = function () {
+
+        var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
+        var uniquewhatsapp = makeid();
+        var linkurl = encodeURIComponent(baseurl) + "editapplicationform/" + $stateParams.id + "/" + localStorage.getItem('user_id') + "/" + uniquewhatsapp;
+
+        $scope.linkParamWhatsapp = {
+            link: uniquewhatsapp,
+            user_id: localStorage.getItem('user_id'),
+            status: 'open'
+        }
+
+        HTTPService.sendWhatsappLink($scope.linkParamWhatsapp).then(function (res) {
+            if (res.data.status == 1) {
+                // alert(res.data.message);
+                // $state.go("app.agentdashboard");
+                window.location = "whatsapp://send?text=" + linkurl;
+            }
+        }, function (err) {
+            console.log(err);
+            if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+                HTTPService.logout();
+                alert("Session Expired...");
+            }
+        });
+
+    }
+
+    $scope.emailSubmit = function (customerEmail) {
+        if ($("#customeremail").hasClass('form-validate-warning')) {
+            alert("Please enter valid email id..");
+        } else if ($("#resendReason").val() == '' || $("#resendReason").val() == null) {
+            alert("Please enter Resend Reason..");
+        } else {
+            var baseurl = window.location.protocol + "//" + window.location.host + "/#!/";
+            var uniqueid = makeid();
+            var linkurl = baseurl + "editapplicationform/" + $stateParams.id + "/" + localStorage.getItem('user_id') + "/" + uniqueid;
+
+            $scope.linkParam = {
+                link: uniqueid,
+                user_id: localStorage.getItem('user_id'),
+                status: 'open',
+                email: customerEmail,
+                full_link: linkurl,
+                resend_content: $("#resendReason").val()
+            }
+
+            HTTPService.sendEmailLink($scope.linkParam).then(function (res) {
+                if (res.data.status == 1) {
+                    alert(res.data.message);
+                    $state.go("app.agentdashboard");
+                }
+            }, function (err) {
+                console.log(err);
+                if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+                    HTTPService.logout();
+                    alert("Session Expired...");
+                }
+            });
+        }
+
+    }
+
+    function makeid() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 25; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    $scope.isMobile = detectmob();
+
+    function detectmob() {
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+        ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $scope.resendApplication = function () {
+        $scope.showResendButton = true;
+    }
 
     $scope.application = {};
     HTTPService.getSingleApplication($stateParams.id).then(function (res) {

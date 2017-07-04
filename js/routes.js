@@ -75,6 +75,20 @@ angular
       })
 
       // Additional Pages
+      .state('appSimple.editapplicationform', {
+        url: '/editapplicationform/:aid/:id/:key',
+        templateUrl: 'views/pages/editapplicationform.html',
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/editapplicationformController.js']
+            });
+          }]
+        }
+      })
+
+      // Additional Pages
       .state('appSimple.login', {
         url: '/login',
         templateUrl: 'views/pages/login.html',
@@ -83,6 +97,20 @@ angular
             // you can lazy load controllers
             return $ocLazyLoad.load({
               files: ['js/controllers/loginController.js']
+            });
+          }]
+        }
+      })
+
+       // Additional Pages
+      .state('appSimple.forgotpassword', {
+        url: '/forgotpassword',
+        templateUrl: 'views/pages/forgotpassword.html',
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            // you can lazy load controllers
+            return $ocLazyLoad.load({
+              files: ['js/controllers/forgotpasswordController.js']
             });
           }]
         }

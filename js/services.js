@@ -9,6 +9,18 @@ angular
             });
         }
 
+        this.forgotpassword = function (params) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "forgotpassword",
+                data: params
+
+            });
+        }
+
         this.logout = function () {
 
             localStorage.setItem('user_token', "");
@@ -373,6 +385,17 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "getApplication/" + id,
+
+            });
+        }
+
+        this.getSingleApplicationWithoutToken = function (id) {
+            return $http({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "getApplicationwithouttoken/" + id,
 
             });
         }

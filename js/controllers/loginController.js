@@ -39,7 +39,7 @@ function loginCtrl($scope, $state, HTTPService, $location) {
     }
 
     $scope.doSomething = function (login) {
-        console.log(login);
+        //console.log(login);
 
         if (login) {
             if (!login.username) {

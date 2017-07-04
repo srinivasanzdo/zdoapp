@@ -1,0 +1,35 @@
+<div class="container" ng-controller="editapplicationformCtrl">
+    <br/>
+    <div class="row" ng-show="agentForm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Agent</strong> Details
+                </div>
+                <div class="card-block">
+                    <table border="1" cellpadding="10" cellspacing="10" style="width:100%">
+                        <tr>
+                            <td class="bb">Name </td>
+                            <td>{{agent.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Phone </td>
+                            <td>{{agent.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bb">Email </td>
+                            <td>{{agent.email}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="applicationForm">
+
+    </div>
+
+    <br/>
+    <br/>
+</div>

@@ -2,11 +2,9 @@ angular
     .module('app')
     .controller('applicationformCtrl', applicationformCtrl);
 
-applicationformCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location', '$stateParams'];
-function applicationformCtrl($scope, $state, HTTPService, $location, $stateParams) {
-    console.log($stateParams.id);
-    console.log($stateParams.key);
-
+applicationformCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location', '$stateParams', 'S3UploadService'];
+function applicationformCtrl($scope, $state, HTTPService, $location, $stateParams, S3UploadService) {
+    
     $scope.agentForm = false;
     $scope.applicationForm = false;
 
@@ -177,9 +175,9 @@ function applicationformCtrl($scope, $state, HTTPService, $location, $stateParam
 
                         $scope.abc = res.data.message;
                         $scope.liParam = {
-                            linnk : $stateParams.key
+                            link : $stateParams.key
                         }
-                        HTTPService.addApplicationWithoutToken($scope.liParam).then(function (res) {
+                        HTTPService.updateLinkWithoutToken($scope.liParam).then(function (res) {
                             alert($scope.abc);
                             $scope.agentForm = true;
                             $scope.applicationForm = false;
