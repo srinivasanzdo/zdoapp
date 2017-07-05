@@ -377,6 +377,18 @@ angular
             });
         }
 
+        this.updateApplicationWithoutToken = function (params, id) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: domainURL + "editapplicationSubmit/" + id,
+                data: params
+
+            });
+        }
+
         this.getSingleApplication = function (id) {
             return $http({
                 method: "get",

@@ -27,6 +27,283 @@
     </div>
 
     <div ng-show="applicationForm">
+        <form name="appForm">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Personal Information</strong> Form
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Application No </label>
+                                        <input class="form-control" type='text' ng-model='application.application_no' readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="appname">Name <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' name='appname' ng-pattern="/^[a-zA-Z ]+$/" ng-model='application.name' placeholder="Enter Name.."
+                                            required>
+                                        <span class="form-label-warning" ng-show="appForm.appname.$touched && appForm.appname.$error.required">The name is required.</span>
+                                        <span class="form-label-warning" ng-show="appForm.appname.$error.pattern">The name is invalid.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="appdob">DOB <span class="form-label-warning">*</span> </label>
+                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}">
+                                            <input ng-model="application.dob" type="text" class="form-control" name="appdob" required readonly />
+                                        </datepicker>
+                                        <span class="form-label-warning" ng-show="appForm.appdob.$touched && appForm.appdob.$error.required">The DOB is required.</span>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="appcontact">Contact <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' ng-pattern="/^[0-9]+$/" name='appcontact' ng-model='application.contact' placeholder="Enter Contact number.."
+                                            required minlength="8" maxlength="8">
+                                        <span class="form-label-warning" ng-show="appForm.appcontact.$touched && appForm.appcontact.$error.required">The contact number is required.</span>
+                                        <span class="form-label-warning" ng-show="appForm.appcontact.$error.maxlength || appForm.appcontact.$error.minlength || appForm.appcontact.$error.pattern">The contact number is invalid.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="appnok_relationship">Next of Kin (NOK) name and relationship <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' name='appnok_relationship' ng-pattern="/^[a-zA-Z ]+$/" ng-model='application.nok_relationship'
+                                            required>
+                                        <span class="form-label-warning" ng-show="appForm.appnok_relationship.$touched && appForm.appnok_relationship.$error.required">The Value is required.</span>
+                                        <span class="form-label-warning" ng-show="appForm.appnok_relationship.$error.pattern">The Value is invalid.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="appnric">NRIC <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' name='appnric' ng-pattern="/^[a-zA-Z0-9]+$/" ng-model='application.nric' placeholder="Enter NRIC.."
+                                            required minlength="9" maxlength="9">
+                                        <span class="form-label-warning" ng-show="appForm.appnric.$touched && appForm.appnric.$error.required">The NRIC is required.</span>
+                                        <span class="form-label-warning" ng-show="appForm.appnric.$error.maxlength || appForm.appnric.$error.minlength || appForm.appnric.$error.pattern">The NRIC is invalid.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="genderradio"><strong>Gender</strong> <span class="form-label-warning">*</span> </label>
+                                        <div class="radio">
+                                            <label for="maleradio">
+                                        <input type="radio" id="maleradio" name="genderradio" ng-model="application.gender"  value="Male"> Male
+                                    </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="femaleradio">
+                                        <input type="radio" id="femaleradio" name="genderradio" ng-model="application.gender" value="Female"> Female
+                                    </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="appoccupation">Occupation <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' name='appoccupation' ng-model='application.occupation' placeholder="Enter Occupation.."
+                                            required>
+                                        <span class="form-label-warning" ng-show="appForm.appoccupation.$touched && appForm.appoccupation.$error.required">The occupation is required.</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="appcontact_nok">Contact of NOK <span class="form-label-warning">*</span> </label>
+                                        <input class="form-control" type='text' ng-pattern="/^[0-9]+$/" name='appcontact_nok' ng-model='application.contact_nok'
+                                            placeholder="Enter Contact of NOK.." required minlength="8" maxlength="8">
+                                        <span class="form-label-warning" ng-show="appForm.appcontact_nok.$touched && appForm.appcontact_nok.$error.required">The contact NOK is required.</span>
+                                        <span class="form-label-warning" ng-show="appForm.appcontact_nok.$error.maxlength || appForm.appcontact_nok.$error.minlength || appForm.appcontact_nok.$error.pattern">The contact NOK is invalid.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Policy</strong> Form
+                        </div>
+                        <div class="card-block">
+
+                            <div class="form-group">
+                                <label for="appshieldplan_paplan_date">Type of shield plan (with or without rider) / PA plan & Inforce date <span class="form-label-warning">*</span></label>
+                                <input class="form-control" type='text' name='appshieldplan_paplan_date' ng-model='application.shieldplan_paplan_date' required>
+                                <span class="form-label-warning" ng-show="appForm.appshieldplan_paplan_date.$touched && appForm.appshieldplan_paplan_date.$error.required">The Value is required.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="pending_claims"><strong>Any Pending Claims for the current shield plan?</strong> <span class="form-label-warning">*</span></label>
+                                <div class="radio">
+                                    <label for="yesradio1">
+                                    <input type="radio" id="yesradio1" name="pending_claims" ng-model="application.pending_claims" value="Yes" ng-required="!application.pending_claims">YES
+                                </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="noradio1">
+                                    <input type="radio" id="noradio1" name="pending_claims" ng-model="application.pending_claims" value="No" ng-required="!application.pending_claims"> NO
+                                </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="other_entitlement_policies"><strong>Any other cash paying entitlement policies(MC or daily hospitalization cash benefits)</strong> <span class="form-label-warning">*</span> </label>
+                                <div class="radio">
+                                    <label for="yesradio2">
+                                    <input type="radio" id="yesradio2" name="other_entitlement_policies" ng-model="application.other_entitlement_policies" value="Yes" ng-required="!application.other_entitlement_policies">YES
+                                </label>
+                                </div>
+                                <div class="radio2">
+                                    <label for="noradio2">
+                                    <input type="radio" id="noradio2" name="other_entitlement_policies" ng-model="application.other_entitlement_policies" value="No" ng-required="!application.other_entitlement_policies"> NO
+                                </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="appcause_complaint">Cause of complaint <span class="form-label-warning">*</span> </label>
+                                <input class="form-control" type='text' name='appcause_complaint' ng-model='application.cause_complaint' required>
+                                <span class="form-label-warning" ng-show="appForm.appcause_complaint.$touched && appForm.appcause_complaint.$error.required">The Value is required.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="appsigns_symptoms">Signs and Symptoms <span class="form-label-warning">*</span> </label>
+                                <input class="form-control" type='text' name='appsigns_symptoms' ng-model='application.signs_symptoms' required>
+                                <span class="form-label-warning" ng-show="appForm.appsigns_symptoms.$touched && appForm.appsigns_symptoms.$error.required">The Value is required.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="apppreffereddate">Preffered date of admission <span class="form-label-warning">*</span> </label>
+                                <datepicker date-format="yyyy-MM-dd" date-min-limit="{{yesterday}}">
+                                    <input ng-model="application.preffereddate" type="text" class="form-control" name="apppreffereddate" required readonly />
+                                </datepicker>
+                                <span class="form-label-warning" ng-show="appForm.apppreffereddate.$touched && appForm.apppreffereddate.$error.required">Preffered date is required.</span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="form-group">
+                                <label for="exclusionplan"><strong>Any Exclusion in plans?</strong> <span class="form-label-warning">*</span> </label>
+                                <div class="radio">
+                                    <label for="yesradio">
+                                    <input type="radio" id="yesradio" name="exclusionplan" ng-model="application.exclusionplan" value="Yes" ng-required="!application.exclusionplan">YES
+                                </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="noradio">
+                                    <input type="radio" id="noradio" name="exclusionplan" ng-model="application.exclusionplan" value="No" ng-required="!application.exclusionplan"> NO
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Pre-existing conditions</strong> Form
+                                </div>
+                                <div class="card-block">
+                                    <div class="form-group">
+                                        <label for="preexisting_condition"><strong>Any Pre-existing conditions/ medical condition & medicine / past operation done not mentioned in policy</strong> <span class="form-label-warning">*</span></label>
+                                        <div class="radio">
+                                            <label for="yesradio3">
+                                    <input type="radio" id="yesradio3" name="preexisting_condition" ng-model="application.preexisting_condition" value="Yes" ng-required="!application.preexisting_condition">YES
+                                </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="noradio3">
+                                    <input type="radio" id="noradio3" name="preexisting_condition" ng-model="application.preexisting_condition" value="No" ng-required="!application.preexisting_condition"> NO
+                                </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="high_blood_pressure"><strong>High Blood Pressure</strong> <span class="form-label-warning">*</span></label>
+                                        <div class="radio">
+                                            <label for="yesradio4">
+                                    <input type="radio" id="yesradio4" name="high_blood_pressure" ng-model="application.high_blood_pressure" value="Yes" ng-required="!application.high_blood_pressure">YES
+                                </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="noradio4">
+                                    <input type="radio" id="noradio4" name="high_blood_pressure" ng-model="application.high_blood_pressure" value="No" ng-required="!application.high_blood_pressure"> NO
+                                </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="diabetes"><strong>Diabetes</strong> <span class="form-label-warning">*</span></label>
+                                        <div class="radio">
+                                            <label for="yesradio5">
+                                    <input type="radio" id="yesradio5" name="diabetes" ng-model="application.diabetes" value="Yes" ng-required="!application.diabetes">YES
+                                </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="noradio5">
+                                    <input type="radio" id="noradio5" name="diabetes" ng-model="application.diabetes" value="No" ng-required="!application.diabetes"> NO
+                                </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="high_cholesterol"><strong>High Cholesterol</strong> <span class="form-label-warning">*</span></label>
+                                        <div class="radio">
+                                            <label for="yesradio6">
+                                    <input type="radio" id="yesradio6" name="high_cholesterol" ng-model="application.high_cholesterol" value="Yes" ng-required="!application.high_cholesterol">YES
+                                </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label for="noradio6">
+                                    <input type="radio" id="noradio6" name="high_cholesterol" ng-model="application.high_cholesterol" value="No" ng-required="!application.high_cholesterol"> NO
+                                </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="application.high_cholesterol  =='Yes' || application.diabetes =='Yes' || application.high_blood_pressure=='Yes' || application.preexisting_condition == 'Yes'  ">
+                                        <label for="appdiagnosisdate">Any of the above is Yes, date of diagnosis</label>
+                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}">
+                                            <input ng-model="application.diagnosisdate" type="text" class="form-control" name="appdiagnosisdate" readonly />
+                                        </datepicker>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="textarea-input">Remark</label>
+                                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" ng-model="application.remark" placeholder="Remark.."
+                                            style="margin-top: 0px; margin-bottom: 0px; height: 171px;resize:none;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Document</strong> Form
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row" ng-repeat="item in application.image">
+                                        <label class="col-md-3 form-control-label" for="file-input">{{item.type}}<span class="form-label-warning">*</span></label>
+                                        <div class="col-md-9">
+                                            <input class="applicationDoc" type="file" id="{{item.type}}" data-dtype="{{item.type}}" data-did="{{item.id}}" data-dpath="{{item.path}}"
+                                                name="file-input" onchange="angular.element(this).scope().uploadImage(this.files, event)">                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button ng-click="getImagebyName(item.path)" type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp; View Document</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+
+            <div>
+                <center>
+                    <button ng-click="submit(application)" ng-disabled="appForm.$invalid" type="button" class="btn btn-success"> Submit Application </button>
+                </center>
+            </div>
+
+            <br/>
+            <br/>
+
+        </form>
 
     </div>
 
