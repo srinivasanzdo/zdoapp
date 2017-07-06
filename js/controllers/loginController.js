@@ -4,6 +4,7 @@ angular
 
 loginCtrl.$inject = ['$scope', '$state', 'HTTPService', '$location'];
 function loginCtrl($scope, $state, HTTPService, $location) {
+    HTTPService.logout();
     $scope.login = {
         username: '',
         password: ''

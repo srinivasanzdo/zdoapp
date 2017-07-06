@@ -23,6 +23,8 @@ function addagentCtrl($rootScope, $scope, $state, HTTPService, $window) {
                 if (res.data.status == 1) {
                     alert(res.data.message);
                     $state.go("app.agent.viewagentlist");
+                }else{
+                    alert(res.data.message);
                 }
             }, function (err) {
                 console.log(err);

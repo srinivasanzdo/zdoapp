@@ -174,7 +174,7 @@ function editapplicationformCtrl($scope, $state, HTTPService, $location, $stateP
                 cause_complaint: application.cause_complaint,
                 signs_symptoms: application.signs_symptoms,
                 preffereddate: application.preffereddate,
-                status_id: 1,
+                status_id: 7,
                 remark: application.remark ? application.remark : null,
                 rejected: rejected,
                 photo: $scope.document

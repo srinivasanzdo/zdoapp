@@ -9,8 +9,10 @@ angular
       //console.log(AuthFactory.isLoggedIn());
       AuthFactory.isLoggedIn()
         .then(function (isLoggedIn) {
-          if (isLoggedIn.data.id) {
-            deferred.resolve();
+          if (isLoggedIn.data) {
+            if (isLoggedIn.data.id) {
+              deferred.resolve();
+            }
           } else {
             deferred.reject('Not logged in');
             HTTPService.logout();
@@ -102,7 +104,7 @@ angular
         }
       })
 
-       // Additional Pages
+      // Additional Pages
       .state('appSimple.forgotpassword', {
         url: '/forgotpassword',
         templateUrl: 'views/pages/forgotpassword.html',
@@ -451,6 +453,7 @@ angular
           label: 'New Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -468,6 +471,7 @@ angular
           label: 'All Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -485,6 +489,7 @@ angular
           label: 'Pending Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -502,6 +507,7 @@ angular
           label: 'Receive Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -519,6 +525,7 @@ angular
           label: 'Amend Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -536,6 +543,7 @@ angular
           label: 'Approved Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -553,6 +561,7 @@ angular
           label: 'Rejected Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -570,6 +579,7 @@ angular
           label: 'Draft Application',
         },
         resolve: {
+          authenticated: authenticated,
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             // you can lazy load controllers
             return $ocLazyLoad.load({
@@ -630,6 +640,6 @@ angular
         }
       })
 
-      
+
 
   }]);
