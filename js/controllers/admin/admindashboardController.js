@@ -17,17 +17,19 @@ function admindashboardCtrl($rootScope, $scope, $state, AuthFactory, HTTPService
     HTTPService.getAllAppCount().then(function (res) {
         //console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
-            $scope.all = $scope.all + parseInt(res.data[i].total);
-            if (res.data[i].status_id == 1) {
-                $scope.new = res.data[i].total;
-            } else if (res.data[i].status_id == 2) {
-                $scope.amend = res.data[i].total;
-            } else if (res.data[i].status_id == 4) {
-                $scope.approve = res.data[i].total;
-            } else if (res.data[i].status_id == 5) {
-                $scope.reject = res.data[i].total;
-            } else {
+            if (res.data[i].status_id != 8 && res.data[i].status_id != 7) {
+                $scope.all = $scope.all + parseInt(res.data[i].total);
+                if (res.data[i].status_id == 1) {
+                    $scope.new = res.data[i].total;
+                } else if (res.data[i].status_id == 2) {
+                    $scope.amend = res.data[i].total;
+                } else if (res.data[i].status_id == 4) {
+                    $scope.approve = res.data[i].total;
+                } else if (res.data[i].status_id == 5) {
+                    $scope.reject = res.data[i].total;
+                } else {
 
+                }
             }
         }
     }, function (err) {

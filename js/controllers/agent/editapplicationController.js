@@ -60,7 +60,23 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
             if (res.data.status == 1) {
                 // alert(res.data.message);
                 // $state.go("app.agentdashboard");
-                window.location = "whatsapp://send?text=" + linkurl;
+                $scope.updateParam = {
+                    status_id: 8
+                }
+
+                HTTPService.updateStatusApplication($scope.updateParam, $stateParams.id).then(function (res) {
+                    if (res.data.status == 1) {
+                        window.location = "whatsapp://send?text=" + linkurl;
+                    }
+                }, function (err) {
+                    console.log(err);
+                    if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+                        HTTPService.logout();
+                        alert("Session Expired...");
+                    }
+                });
+
+
             }
         }, function (err) {
             console.log(err);
@@ -92,9 +108,24 @@ function editapplicationCtrl($rootScope, $scope, $state, HTTPService, $statePara
             }
 
             HTTPService.sendEmailLink($scope.linkParam).then(function (res) {
+                var mess = res.data.message;
                 if (res.data.status == 1) {
-                    alert(res.data.message);
-                    $state.go("app.agentdashboard");
+                    $scope.updateParamemail = {
+                        status_id: 8
+                    }
+
+                    HTTPService.updateStatusApplication($scope.updateParamemail, $stateParams.id).then(function (res) {
+                        if (res.data.status == 1) {
+                            alert(mess);
+                            $state.go("app.agentdashboard");
+                        }
+                    }, function (err) {
+                        console.log(err);
+                        if (err.data.error == "token_not_provided" || err.data.error == "token_expired" || err.data.error == "token_invalid") {
+                            HTTPService.logout();
+                            alert("Session Expired...");
+                        }
+                    });
                 }
             }, function (err) {
                 console.log(err);

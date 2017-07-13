@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="appdob">DOB <span class="form-label-warning">*</span> </label>
-                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}">
+                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}" datepicker-mobile="true">
                                             <input ng-model="application.dob" type="text" class="form-control" name="appdob" required readonly />
                                         </datepicker>
                                         <span class="form-label-warning" ng-show="appForm.appdob.$touched && appForm.appdob.$error.required">The DOB is required.</span>
@@ -166,7 +166,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="apppreffereddate">Preffered date of admission <span class="form-label-warning">*</span> </label>
-                                <datepicker date-format="yyyy-MM-dd" date-min-limit="{{yesterday}}">
+                                <datepicker date-format="yyyy-MM-dd" date-min-limit="{{yesterday}}" datepicker-mobile="true">
                                     <input ng-model="application.preffereddate" type="text" class="form-control" name="apppreffereddate" required readonly />
                                 </datepicker>
                                 <span class="form-label-warning" ng-show="appForm.apppreffereddate.$touched && appForm.apppreffereddate.$error.required">Preffered date is required.</span>
@@ -251,7 +251,7 @@
                                     </div>
                                     <div class="form-group" ng-show="application.high_cholesterol  =='Yes' || application.diabetes =='Yes' || application.high_blood_pressure=='Yes' || application.preexisting_condition == 'Yes'  ">
                                         <label for="appdiagnosisdate">Any of the above is Yes, date of diagnosis</label>
-                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}">
+                                        <datepicker date-format="yyyy-MM-dd" date-max-limit="{{today}}" datepicker-mobile="true">
                                             <input ng-model="application.diagnosisdate" type="text" class="form-control" name="appdiagnosisdate" readonly />
                                         </datepicker>
                                     </div>

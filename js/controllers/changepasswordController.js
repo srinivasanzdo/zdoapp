@@ -11,16 +11,17 @@ function changepasswordCtrl($rootScope, $scope, $state, HTTPService, $window) {
             alert("Password , Confirm password are mismatch");
         } else {
             $scope.params = {
-                oldpassword: agent.name,
-                password: agent.email,
-                id: localStorage.getItem('user_id')
+                old_password: changepass.oldpassword,
+                new_password: changepass.password
             };
 
-            HTTPService.changePassword($scope.params).then(function (res) {
+            HTTPService.changePassword($scope.params, localStorage.getItem('user_id')).then(function (res) {
                 if (res.data.status == 1) {
                     alert(res.data.message);
                     HTTPService.logout();
                     $state.go("appSimple.login");
+                }else{
+                    alert(res.data.message);
                 }
             }, function (err) {
                 console.log(err);

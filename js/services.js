@@ -21,6 +21,19 @@ angular
             });
         }
 
+        this.changePassword = function (params, id) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "changePassword/" + id,
+                data: params
+
+            });
+        }
+
         this.logout = function () {
 
             localStorage.setItem('user_token', "");
@@ -372,6 +385,19 @@ angular
                     "Authorization": "Bearer " + localStorage.getItem('user_token')
                 },
                 url: domainURL + "updateApplication/" + id,
+                data: params
+
+            });
+        }
+
+        this.updateStatusApplication = function (params, id) {
+            return $http({
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('user_token')
+                },
+                url: domainURL + "updateStatusApplication/" + id,
                 data: params
 
             });
