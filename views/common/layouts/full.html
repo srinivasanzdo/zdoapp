@@ -10,7 +10,14 @@
     <main class="main">
 
         <!-- Breadcrumb -->
+        
         <ol class="breadcrumb" breadcrumb>
+            <li class="breadcrumb-item" ng-if="!isAgent">
+                <a ui-sref="app.admindashboard"><i class="icon-home icons"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item" ng-if="isAgent">
+                <a ui-sref="app.agentdashboard"><i class="icon-home icons"></i> Home</a>
+            </li>
             <ncy-breadcrumb></ncy-breadcrumb>
 
         </ol>

@@ -1,26 +1,26 @@
 <div class="animated fadeIn" ng-controller="agentdashboardCtrl">
     <div class="row">
         <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoAllApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-primary p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{all}}</div>
                     <div class="text-muted text-uppercase font-weight-bold font-xs">All Applications</div>
                 </div>
-                <div class="card-footer p-x-1 p-y-h" ng-click="gotoAllApplication()">
+                <div class="card-footer p-x-1 p-y-h">
                     <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                 </div>
             </div>
         </div>
 
         <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoPendingApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-success p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{pending}}</div>
                     <div class="text-muted text-uppercase font-weight-bold font-xs">Pending Applications</div>
                 </div>
-                <div class="card-footer p-x-1 p-y-h" ng-click="gotoPendingApplication()">
+                <div class="card-footer p-x-1 p-y-h">
                     <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                 </div>
             </div>
@@ -29,26 +29,26 @@
 
     <div class="row">
         <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoAmendApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-warning p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{amend}}</div>
                     <div class="text-muted text-uppercase font-weight-bold font-xs">Amend Applications</div>
                 </div>
-                <div class="card-footer p-x-1 p-y-h" ng-click="gotoAmendApplication()">
+                <div class="card-footer p-x-1 p-y-h">
                     <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                 </div>
             </div>
         </div>
 
         <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoRejectApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-danger p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{reject}}</div>
                     <div class="text-muted text-uppercase font-weight-bold font-xs">Rejected Applications</div>
                 </div>
-                <div class="card-footer p-x-1 p-y-h" ng-click="gotoRejectApplication()">
+                <div class="card-footer p-x-1 p-y-h">
                     <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                 </div>
             </div>
@@ -57,26 +57,26 @@
 
     <div class="row">
         <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoApproveApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-mrx1 p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{approve}}</div>
                         <div class="text-muted text-uppercase font-weight-bold font-xs">Approved Applications</div>
                     </div>
-                    <div class="card-footer p-x-1 p-y-h" ng-click="gotoApproveApplication()">
+                    <div class="card-footer p-x-1 p-y-h">
                         <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-xxs-12 col-xs-6 col-lg-6">
-                <div class="card">
+                <div class="card" ng-click="gotoReceiveApplication()">
                     <div class="card-block p-a-1 clearfix">
                         <i class="icon-people bg-mrx p-a-1 font-2xl m-r-1 pull-left"></i>
                         <div class="h5 text-primary m-b-0 m-t-h">{{receive}}</div>
                         <div class="text-muted text-uppercase font-weight-bold font-xs">Received Applications</div>
                     </div>
-                    <div class="card-footer p-x-1 p-y-h" ng-click="gotoReceiveApplication()">
+                    <div class="card-footer p-x-1 p-y-h">
                         <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                     </div>
                 </div>
@@ -85,13 +85,13 @@
 
         <div class="row">
             <div class="col-xxs-12 col-xs-6 col-lg-6">
-            <div class="card">
+            <div class="card" ng-click="gotoDraftApplication()">
                 <div class="card-block p-a-1 clearfix">
                     <i class="icon-people bg-mrx2 p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-primary m-b-0 m-t-h">{{draft}}</div>
                         <div class="text-muted text-uppercase font-weight-bold font-xs">Draft Applications</div>
                     </div>
-                    <div class="card-footer p-x-1 p-y-h" ng-click="gotoDraftApplication()">
+                    <div class="card-footer p-x-1 p-y-h">
                         <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right pull-right font-lg"></i></a>
                     </div>
                 </div>
